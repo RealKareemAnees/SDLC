@@ -1,0 +1,2294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Agile E-Shop — Complete Software Engineering Guide</title>
+<style>
+:root {
+  --bg: #0f0f10;
+  --surface: #17171a;
+  --surface2: #1e1e22;
+  --border: #2a2a30;
+  --border2: #38383f;
+  --text: #e8e8ec;
+  --text2: #a0a0b0;
+  --text3: #606070;
+  --accent: #4f8ef7;
+  --accent2: #3ecf8e;
+  --accent3: #f59e0b;
+  --accent4: #e05c7a;
+  --accent5: #a78bfa;
+  --code-bg: #12121a;
+  --sidebar-w: 280px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Georgia',serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  display:flex;
+}
+
+/* SIDEBAR */
+#sidebar{
+  width:var(--sidebar-w);
+  min-height:100vh;
+  background:var(--surface);
+  border-right:1px solid var(--border);
+  position:fixed;
+  top:0;left:0;
+  overflow-y:auto;
+  z-index:100;
+  display:flex;
+  flex-direction:column;
+}
+#sidebar .sb-logo{
+  padding:1.5rem 1.25rem 1rem;
+  border-bottom:1px solid var(--border);
+}
+#sidebar .sb-logo .proj-name{
+  font-family:'Courier New',monospace;
+  font-size:10px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--text3);
+  margin-bottom:.3rem;
+}
+#sidebar .sb-logo h2{
+  font-size:1rem;
+  font-weight:normal;
+  color:var(--text);
+  line-height:1.3;
+}
+#sidebar nav{padding:.75rem 0 2rem}
+#sidebar nav .phase-head{
+  font-family:'Courier New',monospace;
+  font-size:9px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--text3);
+  padding:.6rem 1.25rem .3rem;
+  display:block;
+  margin-top:.5rem;
+}
+#sidebar nav a{
+  display:block;
+  padding:.35rem 1.25rem .35rem 1.5rem;
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:12px;
+  color:var(--text2);
+  text-decoration:none;
+  border-left:2px solid transparent;
+  transition:all .15s;
+  line-height:1.4;
+}
+#sidebar nav a:hover{color:var(--text);border-color:var(--border2);background:var(--surface2)}
+#sidebar nav a.active{color:var(--accent);border-color:var(--accent);background:rgba(79,142,247,.07)}
+
+/* MAIN */
+#main{
+  margin-left:var(--sidebar-w);
+  flex:1;
+  min-height:100vh;
+}
+
+/* HERO */
+.hero{
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  padding:4rem 4rem 3rem;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  top:-100px;right:-100px;
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(79,142,247,.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero .tag{
+  font-family:'Courier New',monospace;
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:1rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.hero .tag::before{content:'';display:inline-block;width:20px;height:1px;background:var(--accent)}
+.hero h1{
+  font-size:clamp(1.8rem,3vw,2.8rem);
+  font-weight:normal;
+  letter-spacing:-.03em;
+  line-height:1.2;
+  margin-bottom:1rem;
+  color:#fff;
+}
+.hero p{
+  font-size:1rem;
+  color:var(--text2);
+  max-width:640px;
+  line-height:1.7;
+  margin-bottom:1.5rem;
+}
+.team-bar{
+  display:flex;flex-wrap:wrap;gap:.5rem;
+  margin-top:1.5rem;padding-top:1.5rem;
+  border-top:1px solid var(--border);
+}
+.team-pill{
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:11px;
+  padding:4px 12px;
+  border-radius:100px;
+  border:1px solid var(--border2);
+  color:var(--text2);
+}
+.team-pill.you{border-color:var(--accent);color:var(--accent);background:rgba(79,142,247,.08)}
+
+/* PHASE SECTIONS */
+.phase{
+  padding:3rem 4rem 2rem;
+  border-bottom:1px solid var(--border);
+}
+.phase-header{
+  margin-bottom:2.5rem;
+  padding-bottom:1.5rem;
+  border-bottom:1px solid var(--border);
+}
+.phase-tag{
+  font-family:'Courier New',monospace;
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:.6rem;
+}
+.phase-tag.p0{color:var(--text3)}
+.phase-tag.p1{color:var(--accent2)}
+.phase-tag.p2{color:var(--accent)}
+.phase-tag.p3{color:var(--accent5)}
+.phase-tag.p4{color:var(--accent3)}
+.phase-tag.p5{color:var(--accent4)}
+.phase-tag.p6{color:#38bdf8}
+.phase-tag.p7{color:#fb923c}
+
+.phase h2{
+  font-size:1.7rem;
+  font-weight:normal;
+  letter-spacing:-.02em;
+  color:#fff;
+  line-height:1.2;
+}
+.phase-desc{
+  margin-top:.5rem;
+  color:var(--text2);
+  font-style:italic;
+  font-size:.93rem;
+}
+
+/* Section headers */
+h3{
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:1rem;
+  font-weight:600;
+  color:#fff;
+  margin:2.5rem 0 .75rem;
+  letter-spacing:-.01em;
+  display:flex;align-items:center;gap:.6rem;
+}
+h3::before{
+  content:'';
+  display:inline-block;
+  width:3px;height:14px;
+  background:var(--accent);
+  border-radius:2px;
+  flex-shrink:0;
+}
+h4{
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:.8rem;
+  font-weight:600;
+  color:var(--text3);
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  margin:1.75rem 0 .6rem;
+}
+p{
+  color:var(--text2);
+  margin-bottom:1rem;
+  font-size:.95rem;
+  line-height:1.8;
+}
+
+/* DOCUMENT BLOCKS */
+.doc-block{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  margin:1.25rem 0;
+  overflow:hidden;
+}
+.doc-block .doc-header{
+  background:var(--surface2);
+  border-bottom:1px solid var(--border);
+  padding:.7rem 1.25rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.doc-block .doc-header .doc-icon{
+  width:24px;height:24px;
+  border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;
+  font-family:'Courier New',monospace;
+  font-weight:bold;
+  flex-shrink:0;
+}
+.doc-header .doc-title{
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:.85rem;
+  font-weight:600;
+  color:var(--text);
+  flex:1;
+}
+.doc-header .doc-id{
+  font-family:'Courier New',monospace;
+  font-size:.7rem;
+  color:var(--text3);
+  border:1px solid var(--border);
+  padding:2px 8px;
+  border-radius:4px;
+}
+.doc-body{padding:1.25rem}
+.doc-body p{margin-bottom:.75rem;font-size:.88rem}
+.doc-body p:last-child{margin-bottom:0}
+
+/* COLOR doc icons */
+.icon-feas{background:rgba(62,207,142,.15);color:var(--accent2)}
+.icon-meet{background:rgba(79,142,247,.15);color:var(--accent)}
+.icon-req{background:rgba(245,158,11,.15);color:var(--accent3)}
+.icon-arch{background:rgba(167,139,250,.15);color:var(--accent5)}
+.icon-sprint{background:rgba(224,92,122,.15);color:var(--accent4)}
+.icon-test{background:rgba(56,189,248,.15);color:#38bdf8}
+.icon-evo{background:rgba(251,146,60,.15);color:#fb923c}
+
+/* CALLOUT */
+.callout{
+  border-left:3px solid;
+  padding:.9rem 1.1rem;
+  margin:1rem 0;
+  border-radius:0 6px 6px 0;
+  font-size:.88rem;
+}
+.callout p{margin-bottom:.3rem;font-size:.88rem}
+.callout p:last-child{margin-bottom:0}
+.callout strong{
+  display:block;
+  font-family:'Courier New',monospace;
+  font-size:.7rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  margin-bottom:.4rem;
+}
+.call-blue{border-color:var(--accent);background:rgba(79,142,247,.07)}
+.call-blue strong{color:var(--accent)}
+.call-green{border-color:var(--accent2);background:rgba(62,207,142,.07)}
+.call-green strong{color:var(--accent2)}
+.call-amber{border-color:var(--accent3);background:rgba(245,158,11,.07)}
+.call-amber strong{color:var(--accent3)}
+.call-red{border-color:var(--accent4);background:rgba(224,92,122,.07)}
+.call-red strong{color:var(--accent4)}
+.call-purple{border-color:var(--accent5);background:rgba(167,139,250,.07)}
+.call-purple strong{color:var(--accent5)}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:.83rem;margin:1rem 0;font-family:'Helvetica Neue',Arial,sans-serif}
+.tbl th{background:var(--surface2);border:1px solid var(--border);padding:.55rem .9rem;text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);font-weight:600}
+.tbl td{border:1px solid var(--border);padding:.55rem .9rem;color:var(--text2);vertical-align:top;line-height:1.5}
+.tbl tr:hover td{background:var(--surface2)}
+.tbl .hi{color:var(--text);font-weight:600}
+.tbl .must{color:var(--accent2);font-weight:600}
+.tbl .should{color:var(--accent3)}
+.tbl .p1{color:var(--accent4);font-weight:700}
+.tbl .p2{color:var(--accent3);font-weight:600}
+.tbl .p3{color:var(--accent2)}
+.tbl .p4{color:var(--text3)}
+
+/* CODE */
+pre{
+  background:var(--code-bg);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:1.1rem 1.25rem;
+  overflow-x:auto;
+  font-family:'Courier New',monospace;
+  font-size:.8rem;
+  line-height:1.7;
+  color:#c9d1d9;
+  margin:1rem 0;
+}
+.kw{color:#ff7b72}
+.fn{color:#d2a8ff}
+.str{color:#a5d6ff}
+.cm{color:#8b949e;font-style:italic}
+.nm{color:#79c0ff}
+
+/* ROLE BADGES */
+.role-badge{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:.75rem;
+  padding:3px 10px;
+  border-radius:100px;
+  border:1px solid var(--border2);
+  color:var(--text2);
+  margin:2px;
+}
+.role-you{border-color:var(--accent);color:var(--accent);background:rgba(79,142,247,.08)}
+.role-dev{border-color:var(--accent2);color:var(--accent2);background:rgba(62,207,142,.08)}
+.role-client{border-color:var(--accent3);color:var(--accent3);background:rgba(245,158,11,.08)}
+.role-sm{border-color:var(--accent5);color:var(--accent5);background:rgba(167,139,250,.08)}
+
+/* PROCESS FLOW */
+.flow{display:flex;align-items:stretch;gap:0;margin:1.25rem 0;flex-wrap:wrap}
+.flow-step{
+  flex:1;min-width:100px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:.85rem .9rem;
+  position:relative;
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  border-right:none;
+}
+.flow-step:last-child{border-right:1px solid var(--border)}
+.flow-step:first-child{border-radius:6px 0 0 6px}
+.flow-step:last-child{border-radius:0 6px 6px 0}
+.flow-step::after{
+  content:'›';
+  position:absolute;
+  right:-10px;top:50%;
+  transform:translateY(-50%);
+  color:var(--text3);
+  font-size:1.2rem;
+  z-index:1;
+}
+.flow-step:last-child::after{display:none}
+.flow-step .sn{font-size:.65rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.2rem}
+.flow-step .st{font-size:.8rem;font-weight:600;color:var(--text);line-height:1.3}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin:1rem 0}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.75rem;margin:1rem 0}
+@media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.g2,.g3,.g4{grid-template-columns:1fr};#sidebar{display:none};#main{margin-left:0}}
+
+/* CARD */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:1.1rem;
+}
+.card .cn{font-family:'Courier New',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.4rem}
+.card .ct{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:.5rem}
+.card p{font-size:.82rem;line-height:1.5;margin-bottom:0}
+
+/* SCRUM BOARD */
+.scrum-board{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin:1.25rem 0}
+.sb-col-head{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:.5rem .75rem;border-radius:4px 4px 0 0;margin-bottom:.5rem;text-align:center}
+.sb-todo{background:rgba(96,96,112,.15);color:var(--text3)}
+.sb-doing{background:rgba(245,158,11,.12);color:var(--accent3)}
+.sb-review{background:rgba(79,142,247,.12);color:var(--accent)}
+.sb-done{background:rgba(62,207,142,.12);color:var(--accent2)}
+.sb-card{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:.65rem .75rem;
+  margin-bottom:.5rem;
+  font-size:.78rem;
+  font-family:'Helvetica Neue',Arial,sans-serif;
+}
+.sb-card .sc-id{font-family:'Courier New',monospace;font-size:.65rem;color:var(--text3);margin-bottom:.2rem}
+.sb-card .sc-text{color:var(--text);line-height:1.4;margin-bottom:.35rem}
+.sb-card .sc-meta{display:flex;justify-content:space-between;align-items:center}
+.sb-card .sc-pts{font-size:.65rem;background:var(--surface);border:1px solid var(--border);padding:1px 6px;border-radius:3px;color:var(--text3)}
+.sb-card .sc-dev{font-size:.65rem;color:var(--accent2)}
+
+/* CONVERSATION */
+.conv{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem;margin:1rem 0}
+.conv-line{display:flex;gap:.75rem;margin-bottom:.75rem;font-size:.85rem;line-height:1.5}
+.conv-line:last-child{margin-bottom:0}
+.conv-line .speaker{font-family:'Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.75rem;white-space:nowrap;min-width:90px;padding-top:.15rem}
+.conv-line .speech{color:var(--text2)}
+.sp-you{color:var(--accent)}
+.sp-client{color:var(--accent3)}
+.sp-dev{color:var(--accent2)}
+.sp-sm{color:var(--accent5)}
+
+/* STATUS PILLS */
+.spill{display:inline-block;font-family:'Courier New',monospace;font-size:.7rem;padding:2px 8px;border-radius:3px;margin:1px}
+.sp-todo{background:rgba(96,96,112,.2);color:var(--text3)}
+.sp-prog{background:rgba(245,158,11,.15);color:var(--accent3)}
+.sp-done{background:rgba(62,207,142,.15);color:var(--accent2)}
+.sp-block{background:rgba(224,92,122,.15);color:var(--accent4)}
+.sp-high{background:rgba(224,92,122,.15);color:var(--accent4)}
+.sp-med{background:rgba(245,158,11,.15);color:var(--accent3)}
+.sp-low{background:rgba(62,207,142,.15);color:var(--accent2)}
+
+/* STORY CARD */
+.story-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:1.1rem 1.25rem;
+  margin:.75rem 0;
+}
+.story-card .sc-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem}
+.story-card .sc-id-b{font-family:'Courier New',monospace;font-size:.7rem;color:var(--text3)}
+.story-card .sc-pts-b{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.75rem;font-weight:700;color:var(--accent5)}
+.story-card .sc-title{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.4rem}
+.story-card .sc-story{font-size:.85rem;color:var(--text2);border-left:2px solid var(--border2);padding-left:.75rem;margin-bottom:.75rem;font-style:italic}
+.story-card .sc-ac-head{font-family:'Courier New',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent2);margin-bottom:.4rem}
+.story-card .sc-ac-item{font-size:.8rem;color:var(--text2);padding:.2rem 0;padding-left:1rem;position:relative}
+.story-card .sc-ac-item::before{content:'✓';position:absolute;left:0;color:var(--accent2);font-size:.7rem}
+.story-card .sc-tasks{margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border)}
+.story-card .sc-task-head{font-family:'Courier New',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent3);margin-bottom:.4rem}
+.story-card .sc-task-item{font-size:.8rem;color:var(--text2);padding:.15rem 0;padding-left:1rem;position:relative}
+.story-card .sc-task-item::before{content:'→';position:absolute;left:0;color:var(--accent3);font-size:.7rem}
+
+/* NFR CARD */
+.nfr-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:.9rem 1.1rem;
+  margin:.5rem 0;
+}
+.nfr-card .nfr-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem}
+.nfr-card .nfr-type{font-family:'Courier New',monospace;font-size:.65rem;padding:2px 7px;border-radius:3px;font-weight:600}
+.nfr-type-prod{background:rgba(79,142,247,.15);color:var(--accent)}
+.nfr-type-org{background:rgba(167,139,250,.15);color:var(--accent5)}
+.nfr-type-ext{background:rgba(245,158,11,.15);color:var(--accent3)}
+.nfr-card .nfr-id{font-family:'Courier New',monospace;font-size:.7rem;color:var(--text3)}
+.nfr-card .nfr-text{font-size:.85rem;color:var(--text2);margin-bottom:.4rem}
+.nfr-card .nfr-measure{font-family:'Courier New',monospace;font-size:.78rem;color:var(--accent2)}
+
+/* SPRINT PLAN */
+.sprint-row{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:.9rem 1.1rem;
+  margin:.5rem 0;
+  display:grid;
+  grid-template-columns:80px 1fr auto;
+  gap:1rem;
+  align-items:start;
+}
+.sprint-row .sp-num{font-family:'Courier New',monospace;font-size:.8rem;font-weight:700;color:var(--accent5)}
+.sprint-row .sp-goal{font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
+.sprint-row .sp-items{font-size:.78rem;color:var(--text2);line-height:1.6}
+.sprint-row .sp-pts{font-family:'Courier New',monospace;font-size:.8rem;color:var(--accent3);text-align:right;white-space:nowrap}
+
+/* RETROSPECTIVE */
+.retro-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin:1rem 0}
+.retro-col{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:.9rem}
+.retro-col .rc-head{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.65rem}
+.rc-good{color:var(--accent2)}
+.rc-bad{color:var(--accent4)}
+.rc-do{color:var(--accent3)}
+.retro-col .rc-item{font-size:.8rem;color:var(--text2);padding:.2rem 0;padding-left:1rem;position:relative;line-height:1.4}
+.retro-col .rc-item::before{position:absolute;left:0;font-size:.7rem}
+.rc-good .rc-item::before{content:'+';color:var(--accent2)}
+.rc-bad .rc-item::before{content:'−';color:var(--accent4)}
+.rc-do .rc-item::before{content:'▸';color:var(--accent3)}
+
+/* CHANGE REQUEST */
+.cr-block{
+  background:var(--surface);
+  border:1px solid var(--border2);
+  border-radius:8px;
+  overflow:hidden;
+  margin:1rem 0;
+}
+.cr-header{
+  background:rgba(224,92,122,.1);
+  border-bottom:1px solid rgba(224,92,122,.3);
+  padding:.8rem 1.25rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.cr-header .cr-num{font-family:'Courier New',monospace;font-size:.8rem;font-weight:700;color:var(--accent4)}
+.cr-header .cr-title{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.9rem;font-weight:600;color:var(--text)}
+.cr-body{padding:1.1rem 1.25rem}
+
+/* BURNDOWN */
+.burndown{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.1rem;margin:1rem 0}
+.bd-chart{position:relative;height:120px;margin:1rem 0 .5rem}
+.bd-ideal{position:absolute;bottom:0;left:0;width:100%;height:2px;background:repeating-linear-gradient(90deg,var(--text3) 0,var(--text3) 6px,transparent 6px,transparent 12px);transform-origin:left bottom;transform:skewY(-5deg)}
+.bd-label{font-family:'Courier New',monospace;font-size:.7rem;color:var(--text3);display:flex;justify-content:space-between;margin-top:.5rem}
+
+/* HIGHLIGHT QUOTE */
+.hq{
+  font-size:1.05rem;
+  font-style:italic;
+  color:var(--text2);
+  border-left:3px solid var(--border2);
+  padding:.75rem 1.25rem;
+  margin:1.25rem 0;
+  line-height:1.7;
+}
+.hq cite{display:block;margin-top:.4rem;font-style:normal;font-family:'Helvetica Neue',Arial,sans-serif;font-size:.75rem;color:var(--text3);letter-spacing:.05em}
+
+/* FOOTER */
+.footer{
+  padding:3rem 4rem;
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.footer p{font-family:'Courier New',monospace;font-size:.75rem;color:var(--text3);margin-bottom:0}
+
+/* REF TABLE */
+.ref-grid{display:grid;grid-template-columns:160px 1fr auto;gap:.5rem 1rem;align-items:start;font-size:.82rem;padding:.5rem 0;border-bottom:1px solid var(--border)}
+.ref-grid:last-child{border-bottom:none}
+.ref-doc{font-family:'Courier New',monospace;font-size:.75rem;color:var(--accent);word-break:break-all}
+.ref-desc{color:var(--text2)}
+.ref-phase{font-family:'Courier New',monospace;font-size:.72rem;color:var(--text3);text-align:right;white-space:nowrap}
+
+/* ADR */
+.adr{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:.75rem 0}
+.adr-header{background:var(--surface2);border-bottom:1px solid var(--border);padding:.7rem 1.1rem;display:flex;align-items:center;justify-content:space-between}
+.adr-id{font-family:'Courier New',monospace;font-size:.75rem;color:var(--accent5)}
+.adr-status{font-family:'Courier New',monospace;font-size:.7rem;padding:2px 8px;border-radius:3px;background:rgba(62,207,142,.15);color:var(--accent2)}
+.adr-title{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.88rem;font-weight:600;color:var(--text)}
+.adr-body{padding:1rem 1.1rem}
+.adr-section{margin-bottom:.65rem}
+.adr-section-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:.25rem;font-family:'Courier New',monospace}
+.adr-section p{font-size:.83rem;margin-bottom:.25rem}
+
+@media print{#sidebar{display:none}#main{margin-left:0}}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ SIDEBAR ═══════════════════════════════ -->
+<aside id="sidebar">
+  <div class="sb-logo">
+    <div class="proj-name">Project: ShopFlow</div>
+    <h2>Complete Agile Software Engineering Guide</h2>
+  </div>
+  <nav>
+    <span class="phase-head">Phase 0</span>
+    <a href="#discovery">Client Discovery &amp; Feasibility</a>
+    <a href="#first-meeting">First Client Meeting</a>
+    <a href="#feasibility">Feasibility Study Document</a>
+
+    <span class="phase-head">Phase 1 — Requirements</span>
+    <a href="#stakeholders">Stakeholder Register</a>
+    <a href="#elicitation">Requirements Elicitation</a>
+    <a href="#user-stories">User Stories &amp; Scenarios</a>
+    <a href="#functional-req">Functional Requirements</a>
+    <a href="#non-functional">Non-Functional Requirements</a>
+    <a href="#use-cases">Use Case Diagram</a>
+    <a href="#srs">SRS Document</a>
+    <a href="#req-validation">Requirements Validation</a>
+
+    <span class="phase-head">Phase 2 — Architecture</span>
+    <a href="#architecture">System Architecture</a>
+    <a href="#db-design">Database Design</a>
+    <a href="#adrs">Architecture Decision Records</a>
+
+    <span class="phase-head">Phase 3 — Agile Planning</span>
+    <a href="#team-roles">Team Roles</a>
+    <a href="#backlog">Product Backlog</a>
+    <a href="#release-plan">Release Plan</a>
+    <a href="#dod">Definition of Done</a>
+
+    <span class="phase-head">Phase 4 — Sprint 1</span>
+    <a href="#sprint1-plan">Sprint Planning Meeting</a>
+    <a href="#scrum-board">Scrum Board</a>
+    <a href="#daily-scrums">Daily Scrum Transcripts</a>
+    <a href="#tdd">Test-First Development</a>
+    <a href="#pair-prog">Pair Programming</a>
+    <a href="#ci-cd">CI/CD Pipeline</a>
+    <a href="#sprint1-review">Sprint Review &amp; Retro</a>
+
+    <span class="phase-head">Phase 5 — Sprints 2–5</span>
+    <a href="#sprint2">Sprint 2 — Cart &amp; Products</a>
+    <a href="#sprint3">Sprint 3 — Checkout &amp; Payments</a>
+    <a href="#sprint4">Sprint 4 — Admin &amp; Orders</a>
+    <a href="#sprint5">Sprint 5 — Search &amp; Polish</a>
+
+    <span class="phase-head">Phase 6 — Testing</span>
+    <a href="#component-test">Component Testing</a>
+    <a href="#system-test">System Integration Testing</a>
+    <a href="#uat">User Acceptance Testing</a>
+    <a href="#vmodel">V-Model Mapping</a>
+
+    <span class="phase-head">Phase 7 — Evolution</span>
+    <a href="#launch">Go-Live &amp; Deployment</a>
+    <a href="#monitoring">Post-Launch Monitoring</a>
+    <a href="#change-request">Change Request CR-001</a>
+    <a href="#evolution">Maintenance Sprint</a>
+
+    <span class="phase-head">Reference</span>
+    <a href="#all-docs">All Documents Produced</a>
+    <a href="#concepts-map">Sommerville Concepts Map</a>
+  </nav>
+</aside>
+
+<!-- ═══════════════════════════════ MAIN ═══════════════════════════════ -->
+<main id="main">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="tag">Professional Agile Case Study</div>
+  <h1>Building ShopFlow<br>An E-Commerce Platform</h1>
+  <p>A complete, stage-by-stage walkthrough of professional software engineering — from the first client meeting to production and evolution — applying every concept from Sommerville's Chapters 1–4. You are the Project Manager &amp; Team Leader.</p>
+  <div class="team-bar">
+    <span class="team-pill you">You — Project Manager / Scrum Master</span>
+    <span class="team-pill">Kareem (Dev 1) — Backend Lead</span>
+    <span class="team-pill">Sara (Dev 2) — Frontend Lead</span>
+    <span class="team-pill">Omar (Dev 3) — Full-Stack</span>
+    <span class="team-pill">Layla (Dev 4) — QA / Full-Stack</span>
+    <span class="team-pill">Nadia — Client (Product Owner proxy)</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     PHASE 0: DISCOVERY & FEASIBILITY
+═══════════════════════════════════════════════════════════════ -->
+<section class="phase" id="discovery">
+  <div class="phase-header">
+    <div class="phase-tag p0">Phase 0 — Week 1</div>
+    <h2>Client Discovery &amp; Feasibility</h2>
+    <p class="phase-desc">Before writing a single requirement or line of code, you need to understand whether this project is worth doing and what the client actually needs. This phase produces the Feasibility Study and sets up the first proper meeting.</p>
+  </div>
+
+  <h3 id="first-meeting">Step 1 — Pre-Meeting Preparation</h3>
+  <p>You receive an email from Nadia Al-Hassan, owner of a specialty food boutique. Before meeting her, you prepare an <strong>open interview framework</strong> — questions designed to understand her business, her pain points, and her vision without leading her toward any particular solution.</p>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-meet">M</div>
+      <div class="doc-title">Pre-Discovery Interview Framework — Open Questions</div>
+      <div class="doc-id">DOC-001</div>
+    </div>
+    <div class="doc-body">
+      <p><strong style="color:var(--text)">Purpose:</strong> Understand the client's business context before any technical discussion. These are open questions — no yes/no answers, no leading toward a solution.</p>
+      <p><strong style="color:var(--text)">Opening questions:</strong><br>
+      "Tell me about your business — how does it operate today, from the moment a customer finds you to the moment they receive their product?"<br>
+      "Walk me through a typical day in the shop — what tasks take up most of your time?"<br>
+      "Where do your customers come from — walk-in, phone, social media, word of mouth?"</p>
+      <p><strong style="color:var(--text)">Pain-point questions:</strong><br>
+      "What parts of running the business frustrate you most right now?"<br>
+      "Have you lost sales you think a website could have captured? Tell me about one."<br>
+      "How do you manage orders, payments, and stock today — what tools do you use?"</p>
+      <p><strong style="color:var(--text)">Vision questions:</strong><br>
+      "If you imagine your business in 2 years with a new system — what does a perfect day look like?"<br>
+      "What does success look like for this project?"<br>
+      "Are there any other websites or shops you admire — what do they do well?"</p>
+      <p><strong style="color:var(--text)">Constraint questions (closed, for budget/schedule):</strong><br>
+      "Do you have a budget range in mind?"<br>
+      "Is there a date you need this live by — a launch event, a season?"<br>
+      "Do you have a team member who can manage the system day-to-day after launch?"</p>
+    </div>
+  </div>
+
+  <h3>Step 2 — The First Client Meeting (Ethnographic Discovery)</h3>
+  <p>You visit Nadia's shop in person for 2 hours. The first hour is an <strong>open interview</strong> — you let her talk. The second hour is <strong>ethnographic observation</strong> — you watch her take a phone order, package a product, and process a payment. This reveals things she would never have mentioned in an interview because they're second nature to her.</p>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-meet">T</div>
+      <div class="doc-title">Discovery Meeting Transcript — Nadia's Specialty Foods</div>
+      <div class="doc-id">DOC-002</div>
+    </div>
+    <div class="doc-body">
+      <p><em style="color:var(--text3);font-size:.8rem">Location: Nadia's shop, Tuesday 9 April 2024 · Attendees: You (PM), Nadia (Client)</em></p>
+    </div>
+  </div>
+
+  <div class="conv">
+    <div class="conv-line">
+      <span class="speaker sp-you">You</span>
+      <span class="speech">Tell me about your business — how does it operate today, from the moment a customer finds you to the moment they receive their product?</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-client">Nadia</span>
+      <span class="speech">Most customers find us on Instagram, honestly. They DM me, I reply, they tell me what they want — we have maybe 60 products. Then I check if I have it in stock, I tell them a price, they pay on Vodafone Cash or bank transfer, and I package it myself. If they're local, I deliver or they come pick up. For Cairo orders I use a courier.</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-you">You</span>
+      <span class="speech">How long does that whole process take per order, roughly?</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-client">Nadia</span>
+      <span class="speech">An order can take me 45 minutes just in WhatsApp back-and-forth. Sometimes I'm sleeping and a message comes at midnight. I wake up to 20 messages sometimes. And I've lost orders because I replied too late and they bought somewhere else.</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-you">You</span>
+      <span class="speech">Walk me through a day — what takes the most time?</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-client">Nadia</span>
+      <span class="speech">Honestly? Messages. Answering the same questions — "do you have X", "what's the price of Y", "can I order two of Z". And then at the end of the month I have to manually figure out what I sold, what I need to reorder — I use a notebook. I've run out of stock and didn't know until a customer asked.</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-you">You</span>
+      <span class="speech">If you could wave a magic wand, what does a perfect Tuesday look like?</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-client">Nadia</span>
+      <span class="speech">I open my laptop at 9am and I see: these orders came in last night, they're already paid, here's what needs to be packaged. I package them. That's it. No messages, no chasing payments, no guessing stock. And maybe customers can see my products any time, not just when I post on Instagram.</span>
+    </div>
+  </div>
+
+  <div class="callout call-amber">
+    <strong>Ethnographic Observation Note (Hour 2)</strong>
+    <p>While observing, you notice: (1) Nadia manually checks a physical notebook when asked about stock — a 4-minute process per inquiry. (2) When a phone order arrives, she has no way to check if a discount applies — she guesses. (3) She writes orders on sticky notes and transfers them to a ledger at day end — high risk of data loss. (4) Three customers ask about delivery cost — she calculates it manually each time. These observations reveal requirements she never mentioned: real-time stock visibility, automated delivery cost calculation, and order tracking. This is exactly what ethnography discovers that interviews miss.</p>
+  </div>
+
+  <h3 id="feasibility">Step 3 — Feasibility Study</h3>
+  <p>Before writing requirements, you produce a short feasibility study. Per Sommerville, this answers three questions: (1) Does the system contribute to organisational objectives? (2) Can it be implemented within schedule and budget using current technology? (3) Can it integrate with existing systems?</p>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-feas">FS</div>
+      <div class="doc-title">Feasibility Study — ShopFlow E-Commerce Platform</div>
+      <div class="doc-id">DOC-003</div>
+    </div>
+    <div class="doc-body">
+      <p><strong style="color:var(--text)">Project:</strong> ShopFlow — Custom E-Commerce Platform for Nadia's Specialty Foods<br>
+      <strong style="color:var(--text)">Date:</strong> 12 April 2024 &nbsp;|&nbsp; <strong style="color:var(--text)">Prepared by:</strong> [Your Name] — Project Manager<br>
+      <strong style="color:var(--text)">Client:</strong> Nadia Al-Hassan — Nadia's Specialty Foods</p>
+
+      <p><strong style="color:var(--text)">1. Organisational Feasibility</strong><br>
+      The client's primary pain points are: 45-minute order processing time via DM, lost sales due to response latency, manual stock management via notebook, and inability to capture night-time orders. An e-commerce system directly addresses all four. Expected outcome: reduce order processing to under 5 minutes, capture 100% of orders placed outside business hours, eliminate stock-tracking notebook. The system clearly contributes to the business objective of scaling revenue without hiring additional staff. <span style="color:var(--accent2)">FEASIBLE.</span></p>
+
+      <p><strong style="color:var(--text)">2. Technical Feasibility</strong><br>
+      This is a standard interactive transaction-based web application (Sommerville Type 2). Required technology is mature and well-understood: React.js (frontend), Node.js/Express (backend), PostgreSQL (database), Stripe (payment processing). No novel research required. Team has relevant experience. Estimated development time: 10 weeks across 5 sprints (2 weeks each). <span style="color:var(--accent2)">FEASIBLE.</span></p>
+
+      <p><strong style="color:var(--text)">3. Integration Feasibility</strong><br>
+      Required integrations: Stripe payment gateway (well-documented REST API), email service (SendGrid), shipping cost calculation (Aramex API — Egypt). No legacy systems need to be replaced; the shop's Instagram and phone channels can coexist during transition. The client uses a simple WhatsApp-based workflow today — no complex data migration required. <span style="color:var(--accent2)">FEASIBLE.</span></p>
+
+      <p><strong style="color:var(--text)">4. Financial Feasibility</strong><br>
+      Client budget: 80,000–100,000 EGP. Team estimate at scoping level: 10 weeks × 5 developers at blended rate ≈ 90,000 EGP (within range). Ongoing hosting: ~500 EGP/month. Stripe fees: 2.9% per transaction (passed to platform). ROI expected within 3–4 months based on client's stated 15–20 lost orders/month at average order value 450 EGP. <span style="color:var(--accent2)">FEASIBLE.</span></p>
+
+      <p><strong style="color:var(--text)">Recommendation:</strong> Proceed to full requirements engineering. The project is technically straightforward, organisationally valuable, financially viable, and integrations are low-risk. Risk areas: client availability for feedback (she is a solo operator), and defining the delivery integration scope clearly in Sprint 3.</p>
+    </div>
+  </div>
+
+  <div class="callout call-green">
+    <strong>Sommerville Connection — Feasibility Studies (Ch. 4)</strong>
+    <p>Sommerville states: "A feasibility study is a short, focused study that answers three key questions: Does the system contribute to overall objectives? Can it be implemented within schedule and budget? Can it be integrated with other systems? If the answer to any is no, you should probably not go ahead." You've now formally answered all three — yes. This document is your written justification for moving forward.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     PHASE 1: REQUIREMENTS ENGINEERING
+═══════════════════════════════════════════════════════════════ -->
+<section class="phase" id="stakeholders">
+  <div class="phase-header">
+    <div class="phase-tag p1">Phase 1 — Weeks 2–3</div>
+    <h2>Requirements Engineering</h2>
+    <p class="phase-desc">The most critical phase. Mistakes here propagate expensively into design and implementation. You will produce: stakeholder register, full user stories, functional and non-functional requirements, use cases, and a complete SRS document.</p>
+  </div>
+
+  <h3>Step 4 — Stakeholder Register</h3>
+  <p>Per Sommerville: "System stakeholders include anyone affected by the system in some way and who has a legitimate interest in it." You identify all stakeholders — not just the client.</p>
+
+  <table class="tbl">
+    <thead>
+      <tr><th>#</th><th>Stakeholder</th><th>Role</th><th>Interest</th><th>Priority</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>SH-01</td><td class="hi">Nadia Al-Hassan</td><td>Shop Owner / Client</td><td>Reduce admin workload, increase sales, track stock and revenue</td><td class="p1">Critical</td></tr>
+      <tr><td>SH-02</td><td class="hi">End Customers</td><td>Shoppers</td><td>Easy browsing, fast checkout, order tracking, mobile-friendly experience</td><td class="p1">Critical</td></tr>
+      <tr><td>SH-03</td><td>Delivery Staff</td><td>Fulfilment</td><td>Clear order manifests, delivery addresses, special instructions</td><td class="p2">High</td></tr>
+      <tr><td>SH-04</td><td>Payment Gateway (Stripe)</td><td>External System</td><td>Correct API integration, PCI-DSS compliance, secure card handling</td><td class="p2">High</td></tr>
+      <tr><td>SH-05</td><td>You (PM/SM)</td><td>Development Team</td><td>Achievable scope, clear requirements, testable acceptance criteria</td><td class="p2">High</td></tr>
+      <tr><td>SH-06</td><td>Tax Authority (Egypt)</td><td>Regulatory Body</td><td>Invoices must include VAT (14%), records must be auditable</td><td class="p3">Medium</td></tr>
+      <tr><td>SH-07</td><td>Future Admin Staff</td><td>Potential User</td><td>Simple admin interface that requires minimal training</td><td class="p3">Medium</td></tr>
+    </tbody>
+  </table>
+
+  <h3 id="elicitation">Step 5 — Second Meeting (Closed Interview + Requirements Validation)</h3>
+  <p>You now return with a <strong>structured, closed interview</strong> — specific questions derived from your ethnographic observations and feasibility study. You share a rough wireframe prototype (hand-drawn mockups) to prompt concrete feedback. Per Sommerville, showing a prototype at this stage reduces the number of requirements change proposals later.</p>
+
+  <div class="callout call-blue">
+    <strong>Closed Interview Excerpt — Week 2, Tuesday</strong>
+    <p>"When a customer places an order, do they need to create an account, or should guest checkout be allowed?" → Guest checkout preferred, but account creation encouraged.<br>
+    "Should the shop accept COD (Cash on Delivery) in addition to card?" → Yes, COD is essential — many customers don't have cards.<br>
+    "Should stock automatically decrement when an order is placed, or when it ships?" → When placed. I don't want to oversell.<br>
+    "What happens when a product runs out of stock — can customers still see it?" → Yes, show it but mark as 'out of stock'. Customers ask when it's back.<br>
+    "Do you need a promo code / discount system?" → Yes, I run seasonal sales.<br>
+    "What information do you need on the admin dashboard every morning?" → Today's orders, total revenue today, low-stock alerts.</p>
+  </div>
+
+  <h3 id="user-stories">Step 6 — User Stories (Story Cards)</h3>
+  <p>Following XP and Scrum practices, you convert everything you've learned into user stories on "story cards." Each card has: the story (As a… I want… So that…), acceptance criteria, and estimated story points. The client (Nadia) prioritises them.</p>
+
+  <div class="story-card">
+    <div class="sc-label">
+      <span class="sc-id-b">US-001</span>
+      <span class="sc-pts-b">8 pts</span>
+    </div>
+    <div class="sc-title">Product Catalogue Browsing</div>
+    <div class="sc-story">"As a customer, I want to browse all available products with photos, descriptions, and prices, so that I can decide what to buy without messaging Nadia on Instagram."</div>
+    <div class="sc-ac-head">Acceptance Criteria</div>
+    <div class="sc-ac-item">All products displayed in a grid with image, name, price, and stock status</div>
+    <div class="sc-ac-item">Products can be filtered by category (e.g., nuts, dried fruit, spices)</div>
+    <div class="sc-ac-item">Out-of-stock products visible but clearly marked, non-purchasable</div>
+    <div class="sc-ac-item">Page loads in under 2 seconds on a 4G mobile connection</div>
+    <div class="sc-ac-item">Works on mobile, tablet, and desktop without horizontal scrolling</div>
+    <div class="sc-tasks">
+      <div class="sc-task-head">Tasks (breakdown)</div>
+      <div class="sc-task-item">Create Product database model and API endpoint</div>
+      <div class="sc-task-item">Build product card UI component</div>
+      <div class="sc-task-item">Implement category filter (frontend state)</div>
+      <div class="sc-task-item">Write tests: product fetch, filter behaviour, stock display</div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="sc-label">
+      <span class="sc-id-b">US-002</span>
+      <span class="sc-pts-b">5 pts</span>
+    </div>
+    <div class="sc-title">Shopping Cart Management</div>
+    <div class="sc-story">"As a customer, I want to add products to a cart and adjust quantities before checking out, so that I can review my order before paying."</div>
+    <div class="sc-ac-head">Acceptance Criteria</div>
+    <div class="sc-ac-item">Add to cart button on each product, with quantity selector</div>
+    <div class="sc-ac-item">Cart persists across page refreshes (local storage)</div>
+    <div class="sc-ac-item">Cart shows running total, updates when items added/removed</div>
+    <div class="sc-ac-item">Cannot add more than current stock quantity</div>
+    <div class="sc-ac-item">Empty cart state shown with call-to-action to browse</div>
+    <div class="sc-tasks">
+      <div class="sc-task-head">Tasks</div>
+      <div class="sc-task-item">Cart context / Redux store implementation</div>
+      <div class="sc-task-item">Cart sidebar/page UI component</div>
+      <div class="sc-task-item">Stock validation on add-to-cart</div>
+      <div class="sc-task-item">Write unit tests for cart operations (add, remove, update qty)</div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="sc-label">
+      <span class="sc-id-b">US-003</span>
+      <span class="sc-pts-b">13 pts</span>
+    </div>
+    <div class="sc-title">Checkout &amp; Payment</div>
+    <div class="sc-story">"As a customer, I want to check out by entering my delivery address and paying by card or COD, so that my order is placed without needing to contact the shop."</div>
+    <div class="sc-ac-head">Acceptance Criteria</div>
+    <div class="sc-ac-item">Checkout form collects: name, phone, address, city, delivery notes</div>
+    <div class="sc-ac-item">Card payment via Stripe (3DS supported)</div>
+    <div class="sc-ac-item">Cash on Delivery option available for Cairo addresses</div>
+    <div class="sc-ac-item">Order confirmation page + email confirmation sent automatically</div>
+    <div class="sc-ac-item">Promo/discount code field with validation</div>
+    <div class="sc-ac-item">Delivery cost calculated automatically by city/zone</div>
+    <div class="sc-tasks">
+      <div class="sc-task-head">Tasks</div>
+      <div class="sc-task-item">Stripe payment intent integration (backend)</div>
+      <div class="sc-task-item">Checkout multi-step form UI</div>
+      <div class="sc-task-item">Delivery zone pricing table and calculation service</div>
+      <div class="sc-task-item">Promo code validation API endpoint</div>
+      <div class="sc-task-item">Order confirmation email template (SendGrid)</div>
+      <div class="sc-task-item">Write integration tests for full checkout flow</div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="sc-label">
+      <span class="sc-id-b">US-004</span>
+      <span class="sc-pts-b">8 pts</span>
+    </div>
+    <div class="sc-title">Admin Dashboard — Order Management</div>
+    <div class="sc-story">"As Nadia (admin), I want to see all incoming orders with their status and details, so that I know what to pack and ship each day without checking messages."</div>
+    <div class="sc-ac-head">Acceptance Criteria</div>
+    <div class="sc-ac-item">Admin login with secure password (not shared with customer accounts)</div>
+    <div class="sc-ac-item">Dashboard shows: today's orders, total revenue today, pending orders count</div>
+    <div class="sc-ac-item">Order list with: order ID, customer name, items, total, payment method, status</div>
+    <div class="sc-ac-item">Status can be updated: Pending → Confirmed → Shipped → Delivered</div>
+    <div class="sc-ac-item">Order detail view shows full delivery address and special instructions</div>
+    <div class="sc-ac-item">Printable packing slip per order</div>
+    <div class="sc-tasks">
+      <div class="sc-task-head">Tasks</div>
+      <div class="sc-task-item">Admin authentication (JWT, separate from customer auth)</div>
+      <div class="sc-task-item">Admin dashboard UI with metrics cards</div>
+      <div class="sc-task-item">Order list and detail pages</div>
+      <div class="sc-task-item">Order status update API + UI</div>
+      <div class="sc-task-item">Printable packing slip template</div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="sc-label">
+      <span class="sc-id-b">US-005</span>
+      <span class="sc-pts-b">5 pts</span>
+    </div>
+    <div class="sc-title">Stock Management</div>
+    <div class="sc-story">"As Nadia, I want stock to automatically decrease when orders are placed and to receive alerts when a product is running low, so that I never accidentally oversell."</div>
+    <div class="sc-ac-head">Acceptance Criteria</div>
+    <div class="sc-ac-item">Stock quantity decrements on order placement (not on payment)</div>
+    <div class="sc-ac-item">Low-stock alert shown in admin dashboard when quantity ≤ configured threshold</div>
+    <div class="sc-ac-item">Admin can update stock quantities from product management page</div>
+    <div class="sc-ac-item">Stock reservation system: stock held for 15 minutes during checkout</div>
+    <div class="sc-tasks">
+      <div class="sc-task-head">Tasks</div>
+      <div class="sc-task-item">Stock decrement transaction (atomic DB operation)</div>
+      <div class="sc-task-item">Low-stock threshold setting per product</div>
+      <div class="sc-task-item">Stock reservation service with timeout</div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="sc-label">
+      <span class="sc-id-b">US-006</span>
+      <span class="sc-pts-b">8 pts</span>
+    </div>
+    <div class="sc-title">Product Management (Admin)</div>
+    <div class="sc-story">"As Nadia, I want to add, edit, and remove products with photos, descriptions, prices, and categories, so that I can keep the catalogue current myself without needing a developer."</div>
+    <div class="sc-ac-head">Acceptance Criteria</div>
+    <div class="sc-ac-item">Add product form: name, description, price, category, images (up to 5), stock qty, weight</div>
+    <div class="sc-ac-item">Image upload to cloud storage (Cloudinary), auto-resized for web</div>
+    <div class="sc-ac-item">Edit and delete products with confirmation dialog</div>
+    <div class="sc-ac-item">Category management: add / rename / reorder categories</div>
+    <div class="sc-tasks">
+      <div class="sc-task-head">Tasks</div>
+      <div class="sc-task-item">Product CRUD API endpoints</div>
+      <div class="sc-task-item">Image upload service (Cloudinary integration)</div>
+      <div class="sc-task-item">Admin product form UI</div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="sc-label">
+      <span class="sc-id-b">US-007</span>
+      <span class="sc-pts-b">3 pts</span>
+    </div>
+    <div class="sc-title">Customer Account &amp; Order History</div>
+    <div class="sc-story">"As a returning customer, I want to create an account and see my past orders, so that I can reorder favourite products easily."</div>
+    <div class="sc-ac-head">Acceptance Criteria</div>
+    <div class="sc-ac-item">Optional account creation at checkout (guest checkout still available)</div>
+    <div class="sc-ac-item">Order history page shows past orders with status and items</div>
+    <div class="sc-ac-item">One-click reorder fills cart with previous order's items</div>
+    <div class="sc-ac-item">Saved delivery addresses for faster checkout</div>
+  </div>
+
+  <div class="story-card">
+    <div class="sc-label">
+      <span class="sc-id-b">US-008</span>
+      <span class="sc-pts-b">5 pts</span>
+    </div>
+    <div class="sc-title">Product Search</div>
+    <div class="sc-story">"As a customer, I want to search for products by name or ingredient, so that I can find specific items quickly in a catalogue of 60+ products."</div>
+    <div class="sc-ac-head">Acceptance Criteria</div>
+    <div class="sc-ac-item">Search bar visible on all pages</div>
+    <div class="sc-ac-item">Results appear as I type (debounced, 300ms)</div>
+    <div class="sc-ac-item">Search covers product name, description, and tags</div>
+    <div class="sc-ac-item">No results state shown with suggestions</div>
+  </div>
+
+  <div class="story-card">
+    <div class="sc-label">
+      <span class="sc-id-b">US-009</span>
+      <span class="sc-pts-b">3 pts</span>
+    </div>
+    <div class="sc-title">Promo Codes &amp; Discounts</div>
+    <div class="sc-story">"As Nadia, I want to create and manage promo codes with percentage or fixed discounts, so that I can run seasonal promotions without manually adjusting prices."</div>
+    <div class="sc-ac-head">Acceptance Criteria</div>
+    <div class="sc-ac-item">Create promo code: code string, discount type (% or fixed EGP), expiry date, usage limit</div>
+    <div class="sc-ac-item">Promo code validated at checkout in real-time</div>
+    <div class="sc-ac-item">Invalid/expired codes show clear error message</div>
+    <div class="sc-ac-item">Admin can see how many times each code was used</div>
+  </div>
+
+  <h3 id="functional-req">Step 7 — Functional Requirements (FR)</h3>
+  <p>You convert user stories into numbered, formal functional requirements. Each uses "shall" for mandatory requirements and "should" for desirable ones, as per Sommerville's natural language guidelines.</p>
+
+  <table class="tbl">
+    <thead>
+      <tr><th>ID</th><th>Requirement</th><th>Source</th><th>Priority</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>FR-001</td><td>The system shall display all products with name, photo, price, description, category, and stock status.</td><td>US-001 / SH-02</td><td class="p1">Must</td></tr>
+      <tr><td>FR-002</td><td>The system shall allow customers to filter products by category.</td><td>US-001</td><td class="p1">Must</td></tr>
+      <tr><td>FR-003</td><td>The system shall mark out-of-stock products as unavailable and prevent them from being added to the cart.</td><td>US-001 / SH-02</td><td class="p1">Must</td></tr>
+      <tr><td>FR-004</td><td>The system shall allow customers to add products to a persistent shopping cart with adjustable quantities.</td><td>US-002</td><td class="p1">Must</td></tr>
+      <tr><td>FR-005</td><td>The system shall prevent customers from adding more than the available stock quantity to the cart.</td><td>US-002 / US-005</td><td class="p1">Must</td></tr>
+      <tr><td>FR-006</td><td>The system shall collect customer name, phone number, delivery address, city, and optional delivery notes during checkout.</td><td>US-003</td><td class="p1">Must</td></tr>
+      <tr><td>FR-007</td><td>The system shall process card payments via the Stripe API with 3DS authentication support.</td><td>US-003 / SH-04</td><td class="p1">Must</td></tr>
+      <tr><td>FR-008</td><td>The system shall provide a Cash on Delivery payment option for all delivery zones.</td><td>US-003 / SH-02</td><td class="p1">Must</td></tr>
+      <tr><td>FR-009</td><td>The system shall automatically calculate delivery cost based on the customer's city/delivery zone.</td><td>US-003 (ethnography)</td><td class="p1">Must</td></tr>
+      <tr><td>FR-010</td><td>The system shall send an order confirmation email to the customer immediately upon successful order placement.</td><td>US-003</td><td class="p1">Must</td></tr>
+      <tr><td>FR-011</td><td>The system shall decrement product stock quantity atomically when an order is confirmed.</td><td>US-005</td><td class="p1">Must</td></tr>
+      <tr><td>FR-012</td><td>The system shall reserve stock for 15 minutes when a customer begins checkout, releasing it if the order is not completed.</td><td>US-005</td><td class="p2">Should</td></tr>
+      <tr><td>FR-013</td><td>The system shall display a low-stock alert in the admin dashboard for any product with stock ≤ the configured threshold.</td><td>US-005</td><td class="p1">Must</td></tr>
+      <tr><td>FR-014</td><td>The system shall provide an admin interface accessible only to authenticated admin users.</td><td>US-004 / SH-01</td><td class="p1">Must</td></tr>
+      <tr><td>FR-015</td><td>The admin interface shall display today's orders, total revenue today, and pending orders count on the dashboard.</td><td>US-004 (ethnography)</td><td class="p1">Must</td></tr>
+      <tr><td>FR-016</td><td>The admin shall be able to update order status through the pipeline: Pending → Confirmed → Packed → Shipped → Delivered.</td><td>US-004</td><td class="p1">Must</td></tr>
+      <tr><td>FR-017</td><td>The system shall generate a printable packing slip for each order.</td><td>US-004</td><td class="p2">Should</td></tr>
+      <tr><td>FR-018</td><td>The admin shall be able to add, edit, and delete products including uploading up to 5 product images.</td><td>US-006</td><td class="p1">Must</td></tr>
+      <tr><td>FR-019</td><td>The system shall allow customers to optionally create an account and view their order history.</td><td>US-007</td><td class="p2">Should</td></tr>
+      <tr><td>FR-020</td><td>The system shall provide a search function covering product name, description, and tags with real-time results.</td><td>US-008</td><td class="p2">Should</td></tr>
+      <tr><td>FR-021</td><td>The admin shall be able to create promo codes with configurable discount type, value, expiry date, and usage limit.</td><td>US-009</td><td class="p2">Should</td></tr>
+      <tr><td>FR-022</td><td>The system shall generate a VAT-compliant invoice (14% VAT) for each completed order, accessible to the admin.</td><td>SH-06 (regulatory)</td><td class="p1">Must</td></tr>
+    </tbody>
+  </table>
+
+  <h3 id="non-functional">Step 8 — Non-Functional Requirements (NFR)</h3>
+  <p>Sommerville: "Non-functional requirements are often more critical than functional requirements — failing to meet an NFR can make the whole system unusable." All NFRs are written <strong>quantitatively</strong> so they can be objectively tested.</p>
+
+  <h4>Product Requirements</h4>
+
+  <div class="nfr-card">
+    <div class="nfr-head">
+      <span class="nfr-type nfr-type-prod">PRODUCT</span>
+      <span class="nfr-id">NFR-P01</span>
+    </div>
+    <div class="nfr-text">The product catalogue page shall load and display all products within 2 seconds on a standard 4G mobile connection (20 Mbps downlink).</div>
+    <div class="nfr-measure">Metric: Page load time measured via Lighthouse Performance audit. Pass threshold: ≥ 90/100 Performance score.</div>
+  </div>
+
+  <div class="nfr-card">
+    <div class="nfr-head">
+      <span class="nfr-type nfr-type-prod">PRODUCT</span>
+      <span class="nfr-id">NFR-P02</span>
+    </div>
+    <div class="nfr-text">The system shall handle a minimum of 100 concurrent users without degradation in response time exceeding 20% above baseline.</div>
+    <div class="nfr-measure">Metric: Load test using k6 with 100 VUs, baseline response time under 5 VUs. Degradation measured as p95 response time.</div>
+  </div>
+
+  <div class="nfr-card">
+    <div class="nfr-head">
+      <span class="nfr-type nfr-type-prod">PRODUCT</span>
+      <span class="nfr-id">NFR-P03</span>
+    </div>
+    <div class="nfr-text">The system shall achieve ≥ 99.5% uptime during business hours (08:00–22:00 EET, Sunday–Thursday). Planned downtime shall not exceed 30 minutes per month.</div>
+    <div class="nfr-measure">Metric: Uptime Robot monitoring. Calculated monthly: (total minutes - downtime minutes) / total minutes × 100.</div>
+  </div>
+
+  <div class="nfr-card">
+    <div class="nfr-head">
+      <span class="nfr-type nfr-type-prod">PRODUCT</span>
+      <span class="nfr-id">NFR-P04</span>
+    </div>
+    <div class="nfr-text">All customer-facing pages shall achieve a Lighthouse Accessibility score of ≥ 85. All form fields shall have associated labels and ARIA attributes.</div>
+    <div class="nfr-measure">Metric: Lighthouse Accessibility audit per page. Manual screen-reader test on checkout flow.</div>
+  </div>
+
+  <div class="nfr-card">
+    <div class="nfr-head">
+      <span class="nfr-type nfr-type-prod">PRODUCT</span>
+      <span class="nfr-id">NFR-P05</span>
+    </div>
+    <div class="nfr-text">A new admin user shall be able to add a product, update stock, and process an order without training, within 10 minutes of first login.</div>
+    <div class="nfr-measure">Metric: Usability test with one non-technical participant. Time recorded from first login to order status update.</div>
+  </div>
+
+  <h4>Organisational Requirements</h4>
+
+  <div class="nfr-card">
+    <div class="nfr-head">
+      <span class="nfr-type nfr-type-org">ORGANISATIONAL</span>
+      <span class="nfr-id">NFR-O01</span>
+    </div>
+    <div class="nfr-text">All backend code shall use TypeScript. Test coverage for business-logic modules (cart, orders, stock) shall be ≥ 80% as measured by Jest's coverage reporter.</div>
+    <div class="nfr-measure">Metric: jest --coverage report checked in CI/CD pipeline. Build fails if coverage drops below 80%.</div>
+  </div>
+
+  <div class="nfr-card">
+    <div class="nfr-head">
+      <span class="nfr-type nfr-type-org">ORGANISATIONAL</span>
+      <span class="nfr-id">NFR-O02</span>
+    </div>
+    <div class="nfr-text">The system shall be deployed on Vercel (frontend) and Railway (backend). All configuration shall be managed via environment variables — no credentials in source code.</div>
+    <div class="nfr-measure">Metric: Secrets scan (GitGuardian) in CI pipeline. Zero secrets in git history.</div>
+  </div>
+
+  <h4>External / Regulatory Requirements</h4>
+
+  <div class="nfr-card">
+    <div class="nfr-head">
+      <span class="nfr-type nfr-type-ext">EXTERNAL</span>
+      <span class="nfr-id">NFR-E01</span>
+    </div>
+    <div class="nfr-text">The system shall never store raw card numbers. All payment card data shall be handled exclusively by Stripe. The system shall be PCI-DSS compliant via Stripe's Level 1 certification.</div>
+    <div class="nfr-measure">Metric: No card data in server logs, database, or network requests beyond Stripe's tokenised payment intent ID.</div>
+  </div>
+
+  <div class="nfr-card">
+    <div class="nfr-head">
+      <span class="nfr-type nfr-type-ext">EXTERNAL</span>
+      <span class="nfr-id">NFR-E02</span>
+    </div>
+    <div class="nfr-text">All invoices generated by the system shall include 14% VAT as required by Egyptian tax law, with a separate VAT line item and the shop's tax registration number.</div>
+    <div class="nfr-measure">Metric: Invoice template review by client's accountant before go-live.</div>
+  </div>
+
+  <div class="nfr-card">
+    <div class="nfr-head">
+      <span class="nfr-type nfr-type-ext">EXTERNAL</span>
+      <span class="nfr-id">NFR-E03</span>
+    </div>
+    <div class="nfr-text">Customer personal data (name, address, phone) shall be stored in an encrypted database column. Data shall not be shared with third parties other than the payment gateway and shipping provider as necessary to fulfil orders.</div>
+    <div class="nfr-measure">Metric: Database column encryption verified. Privacy policy reviewed by client before launch.</div>
+  </div>
+
+  <h3 id="use-cases">Step 9 — Use Case Diagram (Text Representation)</h3>
+  <p>A Use Case diagram identifies all actors and their interactions with the system. Per Sommerville, it is best used during system design (not requirements elicitation) to document system interactions formally.</p>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-req">UC</div>
+      <div class="doc-title">Use Case Diagram — ShopFlow System</div>
+      <div class="doc-id">DOC-004</div>
+    </div>
+    <div class="doc-body">
+      <p><strong style="color:var(--text)">Actors:</strong> Customer (SH-02) · Admin/Nadia (SH-01) · Stripe Payment Gateway (SH-04) · Email Service (SendGrid)</p>
+      <table class="tbl" style="margin-top:.75rem">
+        <thead><tr><th>Actor</th><th>Use Case</th><th>Related FR</th></tr></thead>
+        <tbody>
+          <tr><td>Customer</td><td>UC-01: Browse Product Catalogue</td><td>FR-001, FR-002, FR-003</td></tr>
+          <tr><td>Customer</td><td>UC-02: Search Products</td><td>FR-020</td></tr>
+          <tr><td>Customer</td><td>UC-03: Manage Shopping Cart</td><td>FR-004, FR-005</td></tr>
+          <tr><td>Customer</td><td>UC-04: Checkout with Card Payment</td><td>FR-006, FR-007, FR-009, FR-010</td></tr>
+          <tr><td>Customer</td><td>UC-05: Checkout with COD</td><td>FR-006, FR-008, FR-009, FR-010</td></tr>
+          <tr><td>Customer</td><td>UC-06: Apply Promo Code</td><td>FR-021</td></tr>
+          <tr><td>Customer</td><td>UC-07: Create Account / Login</td><td>FR-019</td></tr>
+          <tr><td>Customer</td><td>UC-08: View Order History</td><td>FR-019</td></tr>
+          <tr><td>Admin</td><td>UC-09: Login to Admin Panel</td><td>FR-014</td></tr>
+          <tr><td>Admin</td><td>UC-10: View Dashboard Metrics</td><td>FR-015</td></tr>
+          <tr><td>Admin</td><td>UC-11: Manage Orders (View / Update Status)</td><td>FR-016, FR-017</td></tr>
+          <tr><td>Admin</td><td>UC-12: Manage Products (CRUD)</td><td>FR-018</td></tr>
+          <tr><td>Admin</td><td>UC-13: Manage Stock Levels</td><td>FR-013, FR-011</td></tr>
+          <tr><td>Admin</td><td>UC-14: Manage Promo Codes</td><td>FR-021</td></tr>
+          <tr><td>Stripe</td><td>UC-15: Process Card Payment (extends UC-04)</td><td>FR-007, NFR-E01</td></tr>
+          <tr><td>SendGrid</td><td>UC-16: Send Confirmation Email (extends UC-04, UC-05)</td><td>FR-010</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3 id="srs">Step 10 — Software Requirements Specification (SRS) Document</h3>
+  <p>The SRS is the official, contractual statement of what the system must do. Following the IEEE structure recommended by Sommerville.</p>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-req">SRS</div>
+      <div class="doc-title">Software Requirements Specification — ShopFlow v1.0</div>
+      <div class="doc-id">DOC-005</div>
+    </div>
+    <div class="doc-body">
+      <p><strong style="color:var(--text)">Preface:</strong> Version 1.0 — 22 April 2024. Authors: [Your Name] (PM), reviewed and approved by Nadia Al-Hassan (Client). This document supersedes all prior verbal agreements regarding system functionality. Changes to this document must follow the change management process defined in Section 7.</p>
+
+      <p><strong style="color:var(--text)">1. Introduction:</strong> ShopFlow is a custom e-commerce platform for Nadia's Specialty Foods (Cairo, Egypt). Its purpose is to replace the current manual DM/WhatsApp ordering process with a self-service web store, enabling customers to browse, order, and pay independently 24/7. The system integrates with Stripe (payments), SendGrid (email), and Cloudinary (images). It is built as an incremental delivery using Agile/Scrum over 5 two-week sprints.</p>
+
+      <p><strong style="color:var(--text)">2. Glossary:</strong> Order — a confirmed purchase record; Stock — available units of a product; Admin — authenticated shop owner interface; COD — Cash on Delivery; FR — Functional Requirement; NFR — Non-Functional Requirement; Sprint — 2-week development iteration; Story Point — relative effort estimate unit.</p>
+
+      <p><strong style="color:var(--text)">3. User Requirements:</strong> See Section 3 (User Stories US-001 to US-009 above, plus FR table).</p>
+
+      <p><strong style="color:var(--text)">4. System Architecture:</strong> Three-tier architecture. Presentation tier: React.js SPA (Vercel). Logic tier: Node.js/Express REST API (Railway). Data tier: PostgreSQL managed database (Supabase). See Phase 2 for full diagram.</p>
+
+      <p><strong style="color:var(--text)">5. System Requirements Specification:</strong> FR-001 through FR-022 (above table). NFR-P01 through NFR-E03 (above).</p>
+
+      <p><strong style="color:var(--text)">6. System Models:</strong> ER diagram (DOC-007). Use case diagram (DOC-004). Checkout activity diagram (Sprint 3 deliverable).</p>
+
+      <p><strong style="color:var(--text)">7. System Evolution:</strong> Anticipated future changes: multi-vendor marketplace (post-v1), Arabic language support, loyalty points system, WhatsApp Business API integration. Architecture must not lock out these possibilities — use a REST API pattern that allows new clients.</p>
+
+      <p><strong style="color:var(--text)">8. Appendix A — Out of Scope (v1.0):</strong> Multi-currency support, mobile app, subscription boxes, B2B bulk ordering, Arabic RTL interface. These will be considered for v2.</p>
+    </div>
+  </div>
+
+  <h3 id="req-validation">Step 11 — Requirements Validation</h3>
+  <p>Before the project is approved, you conduct a formal requirements review meeting with Nadia, using Sommerville's five validation checks.</p>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-req">RV</div>
+      <div class="doc-title">Requirements Validation Report</div>
+      <div class="doc-id">DOC-006</div>
+    </div>
+    <div class="doc-body">
+      <p><em style="color:var(--text3);font-size:.8rem">Requirements Review Meeting — 25 April 2024 · Attendees: You (PM), Nadia (Client), Layla (QA)</em></p>
+      <table class="tbl" style="margin-top:.5rem">
+        <thead><tr><th>Check</th><th>Finding</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td class="hi">Validity</td><td>FR-008 (COD): Nadia confirmed COD is essential — more than 50% of her current customers don't use cards. Validated. FR-012 (Stock reservation 15 min): Nadia understood and confirmed this is needed for peak times.</td><td class="sp-done" style="white-space:nowrap">PASS</td></tr>
+          <tr><td class="hi">Consistency</td><td>FR-003 says out-of-stock products are "unavailable" but FR-001 says they should be "displayed". Resolved: display them with "Out of Stock" label, add-to-cart disabled.</td><td class="sp-prog">RESOLVED</td></tr>
+          <tr><td class="hi">Completeness</td><td>Missing: no requirement for order cancellation. Added FR-023: "The admin shall be able to cancel a Pending order, triggering a refund for card payments." Also missing: return/refund policy — out of scope for v1 per client request.</td><td class="sp-done">ADDED FR-023</td></tr>
+          <tr><td class="hi">Realism</td><td>NFR-P02 (100 concurrent users): confirmed achievable with Railway's standard tier at estimated cost. NFR-O01 (80% test coverage): team confirmed achievable, accepted as a constraint.</td><td class="sp-done">PASS</td></tr>
+          <tr><td class="hi">Verifiability</td><td>NFR-P05 (usability: 10 min first use): revised from "easy to use" goal to measurable test with specific participant and time threshold. All NFRs now have measurable metrics defined.</td><td class="sp-done">PASS</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:.75rem"><strong style="color:var(--text)">Outcome:</strong> SRS v1.1 approved and signed by Nadia Al-Hassan on 25 April 2024. FR count: 23. NFR count: 8. Project greenlit for development.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     PHASE 2: ARCHITECTURE
+═══════════════════════════════════════════════════════════════ -->
+<section class="phase" id="architecture">
+  <div class="phase-header">
+    <div class="phase-tag p2">Phase 2 — Week 3</div>
+    <h2>System Architecture &amp; Design</h2>
+    <p class="phase-desc">Before any code is written, you need a stable architecture. For an e-commerce system, the architecture must support incremental delivery, future evolution, and the non-functional requirements. This is one area where upfront planning pays off even in agile.</p>
+  </div>
+
+  <h3>Step 12 — Three-Tier Architecture</h3>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-arch">SA</div>
+      <div class="doc-title">System Architecture Document — ShopFlow</div>
+      <div class="doc-id">DOC-007</div>
+    </div>
+    <div class="doc-body">
+      <p><strong style="color:var(--text)">Architecture Pattern:</strong> Three-tier (Presentation / Logic / Data) with REST API communication between tiers.</p>
+
+      <table class="tbl" style="margin-top:.5rem">
+        <thead><tr><th>Tier</th><th>Technology</th><th>Host</th><th>Rationale</th></tr></thead>
+        <tbody>
+          <tr><td class="hi">Presentation</td><td>React.js 18 + TypeScript + Tailwind CSS</td><td>Vercel (CDN)</td><td>Rich interactive UI, server-side rendering for SEO, free tier sufficient for launch</td></tr>
+          <tr><td class="hi">Logic / API</td><td>Node.js 20 + Express + TypeScript</td><td>Railway</td><td>Team expertise, fast development, good library ecosystem for Stripe/SendGrid</td></tr>
+          <tr><td class="hi">Data</td><td>PostgreSQL 15</td><td>Supabase</td><td>Relational data model (orders, products, users), ACID transactions for stock management</td></tr>
+          <tr><td class="hi">File Storage</td><td>Cloudinary</td><td>External SaaS</td><td>Image transformation, CDN delivery, free tier supports 60 products</td></tr>
+          <tr><td class="hi">Payments</td><td>Stripe Payment Intents API</td><td>External SaaS</td><td>PCI-DSS compliance, 3DS support, COD order tracking</td></tr>
+          <tr><td class="hi">Email</td><td>SendGrid</td><td>External SaaS</td><td>Template management, delivery tracking, free tier = 100 emails/day</td></tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top:.75rem"><strong style="color:var(--text)">Key Architecture Decisions:</strong><br>
+      1. REST API (not GraphQL) — simpler for the team, sufficient for v1, easier to onboard future developers.<br>
+      2. Separate customer-facing API from admin API routes — different authentication middleware, easier to audit.<br>
+      3. PostgreSQL over MongoDB — order/product/stock data is highly relational; ACID transactions are required for stock management (FR-011, FR-012).<br>
+      4. Frontend as SPA — enables fast page transitions, better mobile UX; SEO handled via Next.js server components for product pages.</p>
+    </div>
+  </div>
+
+  <h3 id="db-design">Step 13 — Database Schema (ER Design)</h3>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-arch">ER</div>
+      <div class="doc-title">Entity-Relationship Design — Core Tables</div>
+      <div class="doc-id">DOC-008</div>
+    </div>
+    <div class="doc-body">
+      <pre><span class="cm">-- Core entity definitions (abbreviated DDL)</span>
+
+<span class="kw">CREATE TABLE</span> products (
+  id          UUID <span class="kw">PRIMARY KEY</span>,
+  name        VARCHAR(<span class="nm">255</span>) <span class="kw">NOT NULL</span>,
+  description TEXT,
+  price       DECIMAL(<span class="nm">10,2</span>) <span class="kw">NOT NULL</span>,
+  category_id UUID <span class="kw">REFERENCES</span> categories(id),
+  stock_qty   INTEGER <span class="kw">NOT NULL DEFAULT</span> <span class="nm">0</span>,
+  stock_threshold INTEGER <span class="kw">NOT NULL DEFAULT</span> <span class="nm">5</span>, <span class="cm">-- low-stock alert</span>
+  weight_grams INTEGER,
+  is_active   BOOLEAN <span class="kw">DEFAULT</span> <span class="nm">true</span>,
+  created_at  TIMESTAMPTZ <span class="kw">DEFAULT</span> now()
+);
+
+<span class="kw">CREATE TABLE</span> orders (
+  id              UUID <span class="kw">PRIMARY KEY</span>,
+  customer_id     UUID <span class="kw">REFERENCES</span> customers(id) <span class="kw">ON DELETE SET NULL</span>,
+  status          order_status_enum, <span class="cm">-- PENDING|CONFIRMED|PACKED|SHIPPED|DELIVERED|CANCELLED</span>
+  payment_method  payment_method_enum, <span class="cm">-- CARD|COD</span>
+  stripe_pi_id    VARCHAR(<span class="nm">255</span>), <span class="cm">-- Stripe Payment Intent ID</span>
+  subtotal        DECIMAL(<span class="nm">10,2</span>) <span class="kw">NOT NULL</span>,
+  delivery_cost   DECIMAL(<span class="nm">10,2</span>) <span class="kw">NOT NULL</span>,
+  discount_amount DECIMAL(<span class="nm">10,2</span>) <span class="kw">DEFAULT</span> <span class="nm">0</span>,
+  vat_amount      DECIMAL(<span class="nm">10,2</span>) <span class="kw">NOT NULL</span>, <span class="cm">-- 14% Egyptian VAT</span>
+  total           DECIMAL(<span class="nm">10,2</span>) <span class="kw">NOT NULL</span>,
+  promo_code_id   UUID <span class="kw">REFERENCES</span> promo_codes(id),
+  created_at      TIMESTAMPTZ <span class="kw">DEFAULT</span> now()
+);
+
+<span class="kw">CREATE TABLE</span> order_items (
+  id          UUID <span class="kw">PRIMARY KEY</span>,
+  order_id    UUID <span class="kw">REFERENCES</span> orders(id) <span class="kw">ON DELETE CASCADE</span>,
+  product_id  UUID <span class="kw">REFERENCES</span> products(id),
+  quantity    INTEGER <span class="kw">NOT NULL</span>,
+  unit_price  DECIMAL(<span class="nm">10,2</span>) <span class="kw">NOT NULL</span> <span class="cm">-- price at time of order</span>
+);
+
+<span class="cm">-- Stock reservation for 15-min checkout window (FR-012)</span>
+<span class="kw">CREATE TABLE</span> stock_reservations (
+  id          UUID <span class="kw">PRIMARY KEY</span>,
+  product_id  UUID <span class="kw">REFERENCES</span> products(id),
+  quantity    INTEGER <span class="kw">NOT NULL</span>,
+  session_id  VARCHAR(<span class="nm">255</span>),
+  expires_at  TIMESTAMPTZ <span class="kw">NOT NULL</span> <span class="cm">-- 15 minutes from creation</span>
+);</pre>
+    </div>
+  </div>
+
+  <h3 id="adrs">Step 14 — Architecture Decision Records (ADRs)</h3>
+  <p>ADRs document important architectural decisions with their context, options considered, and rationale. They are critical for future maintenance — they explain <em>why</em> the system was built this way.</p>
+
+  <div class="adr">
+    <div class="adr-header">
+      <span class="adr-id">ADR-001</span>
+      <span class="adr-title">Use PostgreSQL for stock management</span>
+      <span class="adr-status">ACCEPTED</span>
+    </div>
+    <div class="adr-body">
+      <div class="adr-section"><div class="adr-section-label">Context</div><p>Stock management requires atomic decrements when orders are placed (FR-011). Two concurrent customers could purchase the last unit of a product simultaneously, causing overselling. This is a classic race condition problem.</p></div>
+      <div class="adr-section"><div class="adr-section-label">Options Considered</div><p>A) MongoDB with application-level locking · B) Redis with atomic DECR commands · C) PostgreSQL with SELECT FOR UPDATE + transaction</p></div>
+      <div class="adr-section"><div class="adr-section-label">Decision</div><p>C — PostgreSQL with row-level locking. A single SQL transaction with SELECT FOR UPDATE ensures atomicity without separate cache infrastructure.</p></div>
+      <div class="adr-section"><div class="adr-section-label">Consequences</div><p>Team must be careful with long-running transactions (don't hold locks during Stripe API call). Stripe call happens outside the transaction; stock is decremented only after payment confirmation webhook.</p></div>
+    </div>
+  </div>
+
+  <div class="adr">
+    <div class="adr-header">
+      <span class="adr-id">ADR-002</span>
+      <span class="adr-title">Process payment via Stripe webhook, not redirect</span>
+      <span class="adr-status">ACCEPTED</span>
+    </div>
+    <div class="adr-body">
+      <div class="adr-section"><div class="adr-section-label">Context</div><p>Card payment confirmation must be reliable. Network failures between the payment provider redirect and our confirmation page can cause orders to be placed without confirmed payment (or vice versa).</p></div>
+      <div class="adr-section"><div class="adr-section-label">Decision</div><p>Use Stripe's payment.succeeded webhook to confirm orders. The frontend shows a "pending" state; the webhook triggers order creation, stock decrement, and confirmation email. The frontend polls for order status.</p></div>
+      <div class="adr-section"><div class="adr-section-label">Consequences</div><p>More complex flow. Webhook must be idempotent (use Stripe event ID as idempotency key). But prevents duplicate orders and guarantees order only created when payment is confirmed.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     PHASE 3: AGILE PLANNING
+═══════════════════════════════════════════════════════════════ -->
+<section class="phase" id="team-roles">
+  <div class="phase-header">
+    <div class="phase-tag p3">Phase 3 — Week 4</div>
+    <h2>Agile Planning &amp; Team Setup</h2>
+    <p class="phase-desc">With architecture decided and requirements validated, you set up the Scrum framework, assign roles, build the full product backlog, and plan the 5-sprint release. This is the bridge between requirements engineering and actual development.</p>
+  </div>
+
+  <h3>Step 15 — Team Roles &amp; Responsibilities</h3>
+
+  <table class="tbl">
+    <thead><tr><th>Person</th><th>Scrum Role</th><th>Technical Role</th><th>Key Responsibilities</th></tr></thead>
+    <tbody>
+      <tr><td class="hi">You</td><td><span class="role-badge role-you">Project Manager</span> <span class="role-badge role-sm">ScrumMaster</span></td><td>Team Lead</td><td>Run daily scrums, sprint planning/review/retro; remove blockers; communicate with Nadia; maintain backlog; track velocity</td></tr>
+      <tr><td class="hi">Kareem</td><td><span class="role-badge role-dev">Dev 1</span></td><td>Backend Lead</td><td>Express API architecture, database design, Stripe integration, stock service, authentication</td></tr>
+      <tr><td class="hi">Sara</td><td><span class="role-badge role-dev">Dev 2</span></td><td>Frontend Lead</td><td>React component architecture, UI/UX implementation, responsive design, Tailwind system</td></tr>
+      <tr><td class="hi">Omar</td><td><span class="role-badge role-dev">Dev 3</span></td><td>Full-Stack</td><td>Full-stack features, integrations (SendGrid, Cloudinary), admin panel, search</td></tr>
+      <tr><td class="hi">Layla</td><td><span class="role-badge role-dev">Dev 4</span></td><td>QA / Full-Stack</td><td>Test suite infrastructure, integration tests, UAT coordination, accessibility testing, CI/CD pipeline</td></tr>
+      <tr><td class="hi">Nadia</td><td><span class="role-badge role-client">Product Owner Proxy</span></td><td>—</td><td>Prioritises backlog items; reviews sprint demos; provides acceptance feedback; available 3 hours/week minimum</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout call-amber">
+    <strong>Note on Product Owner</strong>
+    <p>Sommerville notes: "A key challenge in using an agile approach is keeping customers involved in the process." Nadia is a solo shop owner — she cannot be a full-time on-site customer as XP prescribes. You negotiate: she attends sprint reviews (every 2 weeks), answers questions via WhatsApp within 24 hours, and joins a weekly 30-minute check-in. This is a pragmatic adaptation — per Sommerville, most agile implementations mix plan-based and agile practices to fit real organisational constraints.</p>
+  </div>
+
+  <h3 id="backlog">Step 16 — Product Backlog (Full)</h3>
+  <p>The product backlog is a prioritised list of all work. Story points are estimated using Planning Poker. Velocity from a baseline assumption: 30 story points per sprint (2 weeks, 5 devs, accounting for meetings, reviews, and code review overhead).</p>
+
+  <table class="tbl">
+    <thead><tr><th>ID</th><th>Backlog Item</th><th>Sprint</th><th>Pts</th><th>Priority</th></tr></thead>
+    <tbody>
+      <tr><td>BP-001</td><td>Project setup: repos, CI/CD pipeline, environments (dev/staging/prod)</td><td>1</td><td>3</td><td class="p1">Must</td></tr>
+      <tr><td>BP-002</td><td>Database schema creation &amp; migration setup (Prisma ORM)</td><td>1</td><td>3</td><td class="p1">Must</td></tr>
+      <tr><td>BP-003</td><td>Product catalogue API endpoints (GET all, GET by ID, GET by category)</td><td>1</td><td>5</td><td class="p1">Must</td></tr>
+      <tr><td>BP-004</td><td>Product catalogue UI — responsive grid with category filter</td><td>1</td><td>5</td><td class="p1">Must</td></tr>
+      <tr><td>BP-005</td><td>Product detail page UI</td><td>1</td><td>3</td><td class="p1">Must</td></tr>
+      <tr><td>BP-006</td><td>Shopping cart — context, add/remove/update operations, persistence</td><td>1</td><td>5</td><td class="p1">Must</td></tr>
+      <tr><td>BP-007</td><td>Navigation, header, footer components</td><td>1</td><td>3</td><td class="p1">Must</td></tr>
+      <tr><td>BP-008</td><td>Admin authentication (JWT, bcrypt password hashing)</td><td>2</td><td>5</td><td class="p1">Must</td></tr>
+      <tr><td>BP-009</td><td>Admin: product CRUD API (POST, PUT, DELETE)</td><td>2</td><td>5</td><td class="p1">Must</td></tr>
+      <tr><td>BP-010</td><td>Admin: product management UI with image upload (Cloudinary)</td><td>2</td><td>8</td><td class="p1">Must</td></tr>
+      <tr><td>BP-011</td><td>Admin: stock management &amp; low-stock alerts</td><td>2</td><td>5</td><td class="p1">Must</td></tr>
+      <tr><td>BP-012</td><td>Customer authentication (register, login, JWT)</td><td>2</td><td>5</td><td class="p2">Should</td></tr>
+      <tr><td>BP-013</td><td>Checkout: multi-step form (address, delivery zone, review)</td><td>3</td><td>8</td><td class="p1">Must</td></tr>
+      <tr><td>BP-014</td><td>Delivery zone pricing service + API</td><td>3</td><td>3</td><td class="p1">Must</td></tr>
+      <tr><td>BP-015</td><td>Stripe payment intent integration (backend + frontend)</td><td>3</td><td>8</td><td class="p1">Must</td></tr>
+      <tr><td>BP-016</td><td>Stripe webhook handler for order confirmation</td><td>3</td><td>5</td><td class="p1">Must</td></tr>
+      <tr><td>BP-017</td><td>COD order flow &amp; order creation API</td><td>3</td><td>5</td><td class="p1">Must</td></tr>
+      <tr><td>BP-018</td><td>SendGrid order confirmation email</td><td>3</td><td>3</td><td class="p1">Must</td></tr>
+      <tr><td>BP-019</td><td>Promo code CRUD API &amp; checkout validation</td><td>3</td><td>5</td><td class="p2">Should</td></tr>
+      <tr><td>BP-020</td><td>Admin: order list, order detail, status update UI</td><td>4</td><td>8</td><td class="p1">Must</td></tr>
+      <tr><td>BP-021</td><td>Admin: dashboard metrics (today's orders, revenue, low-stock)</td><td>4</td><td>5</td><td class="p1">Must</td></tr>
+      <tr><td>BP-022</td><td>VAT invoice generation (PDF)</td><td>4</td><td>5</td><td class="p1">Must</td></tr>
+      <tr><td>BP-023</td><td>Printable packing slip</td><td>4</td><td>3</td><td class="p2">Should</td></tr>
+      <tr><td>BP-024</td><td>Customer: order history page + reorder functionality</td><td>4</td><td>5</td><td class="p2">Should</td></tr>
+      <tr><td>BP-025</td><td>Order cancellation + Stripe refund (FR-023)</td><td>4</td><td>5</td><td class="p1">Must</td></tr>
+      <tr><td>BP-026</td><td>Product search (backend full-text + frontend debounced)</td><td>5</td><td>5</td><td class="p2">Should</td></tr>
+      <tr><td>BP-027</td><td>SEO: meta tags, product page server rendering, sitemap</td><td>5</td><td>5</td><td class="p2">Should</td></tr>
+      <tr><td>BP-028</td><td>Performance optimisation (image lazy-load, caching headers)</td><td>5</td><td>5</td><td class="p2">Should</td></tr>
+      <tr><td>BP-029</td><td>Full end-to-end test suite (Playwright)</td><td>5</td><td>5</td><td class="p1">Must</td></tr>
+      <tr><td>BP-030</td><td>Admin: promo code management UI</td><td>5</td><td>3</td><td class="p2">Should</td></tr>
+      <tr><td>BP-031</td><td>Production deployment, domain setup, SSL, smoke tests</td><td>5</td><td>5</td><td class="p1">Must</td></tr>
+      <tr><td>BP-032</td><td>Client training session (30-minute recorded walkthrough)</td><td>5</td><td>2</td><td class="p1">Must</td></tr>
+    </tbody>
+  </table>
+
+  <h3 id="release-plan">Step 17 — Release Plan (5 Sprints)</h3>
+
+  <div class="sprint-row">
+    <div class="sp-num">Sprint 1</div>
+    <div>
+      <div class="sp-goal">Goal: Working product catalogue + shopping cart. Customer can browse and add to cart.</div>
+      <div class="sp-items">BP-001, BP-002, BP-003, BP-004, BP-005, BP-006, BP-007<br>Dates: 29 Apr – 10 May 2024</div>
+    </div>
+    <div class="sp-pts">27 pts</div>
+  </div>
+
+  <div class="sprint-row">
+    <div class="sp-num">Sprint 2</div>
+    <div>
+      <div class="sp-goal">Goal: Admin can manage products and stock. Customer can register/login.</div>
+      <div class="sp-items">BP-008, BP-009, BP-010, BP-011, BP-012<br>Dates: 13–24 May 2024</div>
+    </div>
+    <div class="sp-pts">28 pts</div>
+  </div>
+
+  <div class="sprint-row">
+    <div class="sp-num">Sprint 3</div>
+    <div>
+      <div class="sp-goal">Goal: Full purchase flow live — customer can browse, add to cart, checkout, and pay.</div>
+      <div class="sp-items">BP-013, BP-014, BP-015, BP-016, BP-017, BP-018, BP-019<br>Dates: 27 May – 7 Jun 2024</div>
+    </div>
+    <div class="sp-pts">37 pts</div>
+  </div>
+
+  <div class="sprint-row">
+    <div class="sp-num">Sprint 4</div>
+    <div>
+      <div class="sp-goal">Goal: Complete admin operations — orders, invoicing, customer history, cancellations.</div>
+      <div class="sp-items">BP-020, BP-021, BP-022, BP-023, BP-024, BP-025<br>Dates: 10–21 Jun 2024</div>
+    </div>
+    <div class="sp-pts">31 pts</div>
+  </div>
+
+  <div class="sprint-row">
+    <div class="sp-num">Sprint 5</div>
+    <div>
+      <div class="sp-goal">Goal: Search, performance, SEO, E2E tests, production deployment. Launch-ready.</div>
+      <div class="sp-items">BP-026, BP-027, BP-028, BP-029, BP-030, BP-031, BP-032<br>Dates: 24 Jun – 5 Jul 2024</div>
+    </div>
+    <div class="sp-pts">30 pts</div>
+  </div>
+
+  <div class="callout call-purple">
+    <strong>Sprint 3 Is Over-sized — Action Required</strong>
+    <p>Sprint 3 is estimated at 37 story points against a velocity of ~30. You raise this in sprint planning. Decision: move BP-019 (promo codes) to Sprint 4 if Sprint 3 falls behind. This is the Scrum practice of never extending sprints — incomplete items return to the backlog. Nadia agrees promo codes are a "should", not a "must" for the first purchase flow demo.</p>
+  </div>
+
+  <h3 id="dod">Step 18 — Definition of Done (DoD)</h3>
+  <p>Every team member must agree on what "done" means before any sprint begins. This prevents the common failure of "done" meaning different things to different people.</p>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-sprint">DoD</div>
+      <div class="doc-title">Definition of Done — ShopFlow Team Agreement</div>
+      <div class="doc-id">DOC-009</div>
+    </div>
+    <div class="doc-body">
+      <p>A backlog item is "Done" only when ALL of the following are true:</p>
+      <p>✓ &nbsp;Code is written and passes linting (ESLint, no warnings)<br>
+      ✓ &nbsp;Unit tests written and passing (Jest). Coverage for this module ≥ 80%<br>
+      ✓ &nbsp;Code reviewed by at least one other team member (GitHub Pull Request)<br>
+      ✓ &nbsp;Acceptance criteria from the story card verified manually against staging<br>
+      ✓ &nbsp;No regressions in existing test suite (all CI checks green)<br>
+      ✓ &nbsp;Responsive design verified on mobile (375px), tablet (768px), desktop (1440px)<br>
+      ✓ &nbsp;Merged to main branch via squash commit with descriptive message<br>
+      ✓ &nbsp;Deployed to staging environment automatically</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     PHASE 4: SPRINT 1 — FULL DETAIL
+═══════════════════════════════════════════════════════════════ -->
+<section class="phase" id="sprint1-plan">
+  <div class="phase-header">
+    <div class="phase-tag p4">Phase 4 — Sprint 1: Weeks 5–6</div>
+    <h2>Sprint 1 — Product Catalogue &amp; Cart</h2>
+    <p class="phase-desc">Sprint 1 is documented in exhaustive detail — every meeting, scrum, technical decision, and deliverable. This is the template for how all subsequent sprints run.</p>
+  </div>
+
+  <h3>Sprint Planning Meeting</h3>
+  <p><em style="color:var(--text3)">Monday 29 April 2024, 10:00–11:30 — Conference call (Google Meet)</em></p>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-sprint">SP</div>
+      <div class="doc-title">Sprint 1 Planning Meeting Notes</div>
+      <div class="doc-id">DOC-010</div>
+    </div>
+    <div class="doc-body">
+      <p><strong style="color:var(--text)">Goal declared:</strong> "By the end of Sprint 1, a user can visit the site, browse all products in a responsive grid, filter by category, view a product detail page, and add items to a cart that persists across page refreshes."</p>
+      <p><strong style="color:var(--text)">Velocity:</strong> First sprint — no historical velocity. Team estimate: 27 story points (conservative; new codebase setup takes time).</p>
+      <p><strong style="color:var(--text)">Self-organisation:</strong> Team members pick their items. No top-down assignment.</p>
+    </div>
+  </div>
+
+  <table class="tbl">
+    <thead><tr><th>Item</th><th>Assigned To</th><th>Pts</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>BP-001 Project setup</td><td>Kareem + Layla</td><td>3</td><td>Kareem sets up Express + Prisma. Layla sets up CI/CD (GitHub Actions). Day 1.</td></tr>
+      <tr><td>BP-002 DB schema + migrations</td><td>Kareem</td><td>3</td><td>Products, categories, images tables. Write TDD tests first.</td></tr>
+      <tr><td>BP-003 Product catalogue API</td><td>Kareem</td><td>5</td><td>GET /products, GET /products/:id, GET /products?category=. Pagination later.</td></tr>
+      <tr><td>BP-004 Product catalogue UI</td><td>Sara</td><td>5</td><td>Pair with Omar on filter logic. Mobile-first.</td></tr>
+      <tr><td>BP-005 Product detail page</td><td>Sara + Omar</td><td>3</td><td>Sara: UI layout. Omar: API call + data wiring.</td></tr>
+      <tr><td>BP-006 Shopping cart</td><td>Omar</td><td>5</td><td>React Context. LocalStorage persistence. Kareem reviews stock validation logic.</td></tr>
+      <tr><td>BP-007 Nav + header + footer</td><td>Sara</td><td>3</td><td>Cart item count badge, responsive mobile hamburger menu.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 id="scrum-board">Sprint 1 Scrum Board — Day 5 Snapshot</h3>
+
+  <div class="scrum-board">
+    <div>
+      <div class="sb-col-head sb-todo">To Do</div>
+      <div class="sb-card">
+        <div class="sc-id">BP-006</div>
+        <div class="sc-text">Shopping cart context + persistence</div>
+        <div class="sc-meta"><span class="sc-pts">5 pts</span><span class="sc-dev">Omar</span></div>
+      </div>
+      <div class="sb-card">
+        <div class="sc-id">BP-007</div>
+        <div class="sc-text">Nav, header, footer components</div>
+        <div class="sc-meta"><span class="sc-pts">3 pts</span><span class="sc-dev">Sara</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sb-col-head sb-doing">In Progress</div>
+      <div class="sb-card">
+        <div class="sc-id">BP-003</div>
+        <div class="sc-text">Product catalogue API endpoints</div>
+        <div class="sc-meta"><span class="sc-pts">5 pts</span><span class="sc-dev">Kareem</span></div>
+      </div>
+      <div class="sb-card">
+        <div class="sc-id">BP-004</div>
+        <div class="sc-text">Product catalogue UI — grid + filter</div>
+        <div class="sc-meta"><span class="sc-pts">5 pts</span><span class="sc-dev">Sara</span></div>
+      </div>
+      <div class="sb-card">
+        <div class="sc-id">BP-005</div>
+        <div class="sc-text">Product detail page</div>
+        <div class="sc-meta"><span class="sc-pts">3 pts</span><span class="sc-dev">Omar</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sb-col-head sb-review">In Review</div>
+      <div class="sb-card">
+        <div class="sc-id">BP-002</div>
+        <div class="sc-text">DB schema + Prisma migrations</div>
+        <div class="sc-meta"><span class="sc-pts">3 pts</span><span class="sc-dev">Kareem</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sb-col-head sb-done">Done ✓</div>
+      <div class="sb-card">
+        <div class="sc-id">BP-001</div>
+        <div class="sc-text">Project setup, CI/CD, environments</div>
+        <div class="sc-meta"><span class="sc-pts">3 pts</span><span class="sc-dev">Kareem+Layla</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 id="daily-scrums">Daily Scrum Transcripts</h3>
+  <p>Each scrum takes no more than 15 minutes. Three questions for each person: What did I do yesterday? What am I doing today? Is anything blocking me?</p>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-sprint">DS</div>
+      <div class="doc-title">Daily Scrum — Sprint 1, Day 3 (Wednesday 1 May)</div>
+      <div class="doc-id">DOC-011</div>
+    </div>
+    <div class="doc-body"><p></p></div>
+  </div>
+
+  <div class="conv">
+    <div class="conv-line">
+      <span class="speaker sp-you">You (SM)</span>
+      <span class="speech">Kareem, you're up.</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-dev" style="color:#a78bfa">Kareem</span>
+      <span class="speech">Yesterday: finished BP-001 setup. Express app running on Railway dev. Prisma connected to Supabase. Today: writing schema migrations for products and categories — test first. No blockers.</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-dev" style="color:#38bdf8">Sara</span>
+      <span class="speech">Yesterday: component library setup, Tailwind config, colour tokens. Today: starting BP-004, the product grid. I have a question for Kareem — is the API ready to hit, or should I mock it?</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-dev" style="color:#a78bfa">Kareem</span>
+      <span class="speech">Use MSW (Mock Service Worker) for now — I'll have real data by end of day tomorrow.</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-dev" style="color:#4ade80">Omar</span>
+      <span class="speech">Yesterday: set up the React router structure and page components. Today: starting product detail page UI while waiting for Kareem's API. No blockers.</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-dev" style="color:#fb923c">Layla</span>
+      <span class="speech">Yesterday: CI/CD pipeline — GitHub Actions running lint + test on every PR. Today: writing the first unit tests for the DB models alongside Kareem. One blocker: GitHub Actions is failing on the Node version — I'll fix it this morning, needs Node 20 not 18.</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-you">You (SM)</span>
+      <span class="speech">Layla, flag me if the Node fix takes more than an hour and I'll look at it with you. Kareem and Sara — sync after this for 5 minutes on the mock API shape. Everyone good? Let's build.</span>
+    </div>
+  </div>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-sprint">DS</div>
+      <div class="doc-title">Daily Scrum — Sprint 1, Day 8 (Wednesday 8 May) — BLOCKER</div>
+      <div class="doc-id">DOC-012</div>
+    </div>
+    <div class="doc-body"><p></p></div>
+  </div>
+
+  <div class="conv">
+    <div class="conv-line">
+      <span class="speaker sp-dev" style="color:#4ade80">Omar</span>
+      <span class="speech">Yesterday: shopping cart mostly done — add/remove working. Today: need to add stock validation. <strong style="color:var(--accent4)">Blocker</strong>: the API doesn't return current stock in the product list response — only in the single product endpoint. I need it in the list to disable "Add to Cart" for out-of-stock products.</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-you">You (SM)</span>
+      <span class="speech">Kareem, that's a small API change — how long?</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-dev" style="color:#a78bfa">Kareem</span>
+      <span class="speech">30 minutes — I'll just add stock_qty to the list response. It's already in the DB query.</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-you">You (SM)</span>
+      <span class="speech">Kareem: do that first thing. Omar: you'll have it before your standup coffee is finished. Blocker resolved. Moving on.</span>
+    </div>
+  </div>
+
+  <h3 id="tdd">Test-First Development (TDD) Example</h3>
+  <p>Per Sommerville and XP: tests are written before the code that implements the feature. Layla and Kareem practice this on BP-003 (Product API). The tests define the interface and expected behaviour before implementation begins.</p>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-test">TDD</div>
+      <div class="doc-title">TDD — Product Service Tests (written before implementation)</div>
+      <div class="doc-id">DOC-013</div>
+    </div>
+    <div class="doc-body">
+      <pre><span class="cm">// products.service.test.ts  — written BEFORE products.service.ts
+// Kareem writes these tests. They define the contract the implementation must fulfil.</span>
+
+<span class="kw">import</span> { <span class="fn">getProducts</span>, <span class="fn">getProductById</span> } <span class="kw">from</span> <span class="str">'../services/products.service'</span>
+<span class="kw">import</span> { prismaMock } <span class="kw">from</span> <span class="str">'../test/prisma.mock'</span>
+
+<span class="fn">describe</span>(<span class="str">'ProductService'</span>, () => {
+
+  <span class="fn">describe</span>(<span class="str">'getProducts'</span>, () => {
+
+    <span class="fn">it</span>(<span class="str">'returns all active products with stock_qty included'</span>, <span class="kw">async</span> () => {
+      <span class="kw">const</span> mockProducts = [
+        { id: <span class="str">'uuid-1'</span>, name: <span class="str">'Almonds 500g'</span>, price: <span class="nm">85.00</span>, stock_qty: <span class="nm">20</span>, is_active: <span class="nm">true</span> },
+        { id: <span class="str">'uuid-2'</span>, name: <span class="str">'Cashews 250g'</span>, price: <span class="nm">120.00</span>, stock_qty: <span class="nm">0</span>, is_active: <span class="nm">true</span> },
+      ]
+      prismaMock.product.findMany.mockResolvedValue(mockProducts)
+
+      <span class="kw">const</span> result = <span class="kw">await</span> <span class="fn">getProducts</span>()
+
+      <span class="fn">expect</span>(result).toHaveLength(<span class="nm">2</span>)
+      <span class="fn">expect</span>(result[<span class="nm">0</span>]).toHaveProperty(<span class="str">'stock_qty'</span>)  <span class="cm">// FR-005 — must include stock</span>
+      <span class="fn">expect</span>(prismaMock.product.findMany).toHaveBeenCalledWith(
+        <span class="fn">expect</span>.objectContaining({ <span class="kw">where</span>: { is_active: <span class="nm">true</span> } })
+      )
+    })
+
+    <span class="fn">it</span>(<span class="str">'filters by category_id when provided'</span>, <span class="kw">async</span> () => {
+      prismaMock.product.findMany.mockResolvedValue([])
+      <span class="kw">await</span> <span class="fn">getProducts</span>({ categoryId: <span class="str">'cat-uuid-123'</span> })
+      <span class="fn">expect</span>(prismaMock.product.findMany).toHaveBeenCalledWith(
+        <span class="fn">expect</span>.objectContaining({
+          <span class="kw">where</span>: { is_active: <span class="nm">true</span>, category_id: <span class="str">'cat-uuid-123'</span> }
+        })
+      )
+    })
+
+    <span class="fn">it</span>(<span class="str">'does not return inactive products'</span>, <span class="kw">async</span> () => {
+      prismaMock.product.findMany.mockResolvedValue([])
+      <span class="kw">await</span> <span class="fn">getProducts</span>()
+      <span class="cm">// Verify only is_active: true products are queried</span>
+      <span class="kw">const</span> call = prismaMock.product.findMany.mock.calls[<span class="nm">0</span>][<span class="nm">0</span>]
+      <span class="fn">expect</span>(call.where.is_active).toBe(<span class="nm">true</span>)
+    })
+  })
+
+  <span class="fn">describe</span>(<span class="str">'getProductById'</span>, () => {
+
+    <span class="fn">it</span>(<span class="str">'returns a product when found'</span>, <span class="kw">async</span> () => {
+      <span class="kw">const</span> mockProd = { id: <span class="str">'uuid-1'</span>, name: <span class="str">'Almonds'</span>, stock_qty: <span class="nm">20</span> }
+      prismaMock.product.findUnique.mockResolvedValue(mockProd)
+      <span class="kw">const</span> result = <span class="kw">await</span> <span class="fn">getProductById</span>(<span class="str">'uuid-1'</span>)
+      <span class="fn">expect</span>(result).toEqual(mockProd)
+    })
+
+    <span class="fn">it</span>(<span class="str">'throws ProductNotFoundError when product does not exist'</span>, <span class="kw">async</span> () => {
+      prismaMock.product.findUnique.mockResolvedValue(<span class="nm">null</span>)
+      <span class="kw">await</span> <span class="fn">expect</span>(<span class="fn">getProductById</span>(<span class="str">'non-existent'</span>))
+        .rejects.toThrow(<span class="str">'ProductNotFoundError'</span>)
+    })
+  })
+})
+
+<span class="cm">// ——————————————————————————————————————————————————
+// Kareem now writes products.service.ts to make these tests pass.
+// Before writing any code, ALL tests are RED. Implementation makes them GREEN.
+// ——————————————————————————————————————————————————</span></pre>
+    </div>
+  </div>
+
+  <div class="callout call-green">
+    <strong>Why This Matters (Sommerville Ch. 3)</strong>
+    <p>Sommerville: "Writing tests implicitly defines both an interface and a specification of behaviour for the functionality being developed." Notice how writing the test first forced Kareem to decide: (1) What parameters does getProducts accept? (2) What error type is thrown for missing products? (3) Does the response include stock_qty? All these questions were answered in the test — before any code existed. This is TDD's power.</p>
+  </div>
+
+  <h3 id="pair-prog">Pair Programming Session Log</h3>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-sprint">PP</div>
+      <div class="doc-title">Pair Programming Log — Sara + Omar, BP-004/BP-005</div>
+      <div class="doc-id">DOC-014</div>
+    </div>
+    <div class="doc-body">
+      <p><em style="color:var(--text3);font-size:.8rem">Day 6, 13:00–16:00 · Sara (driver) + Omar (navigator)</em></p>
+      <p><strong style="color:var(--text)">Context:</strong> Sara is implementing the product grid UI (BP-004). Omar navigates, reviewing every line. Sara types; Omar watches, questions, and suggests.</p>
+      <p><strong style="color:var(--text)">Defect caught by pairing (14:23):</strong> Sara wrote the category filter to update URL params directly on every filter click, causing a full page reload and losing scroll position. Omar caught this: "Wait — shouldn't filter state be client-side with React state? We can sync to URL params without a reload using useSearchParams." Sara agreed and refactored. This would have been discovered during QA — pairing caught it in real time at zero extra cost.</p>
+      <p><strong style="color:var(--text)">Refactoring decision (15:10):</strong> Both noticed the ProductCard component was growing complex — it was handling image loading, price formatting, stock display, and the add-to-cart button. Omar: "This feels like too many responsibilities." They extracted <code style="color:var(--accent2)">ProductImage</code> and <code style="color:var(--accent2)">StockBadge</code> into separate components. This is textbook refactoring — improving structure without changing external behaviour.</p>
+      <p><strong style="color:var(--text)">Knowledge transfer:</strong> Sara showed Omar how to use CSS Grid with <code style="color:var(--accent2)">auto-fill</code> for responsive layouts without media queries. Omar would not have learned this from tickets alone — pair programming is explicit knowledge transfer.</p>
+    </div>
+  </div>
+
+  <h3 id="ci-cd">CI/CD Pipeline</h3>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-test">CI</div>
+      <div class="doc-title">CI/CD Pipeline Configuration (GitHub Actions)</div>
+      <div class="doc-id">DOC-015</div>
+    </div>
+    <div class="doc-body">
+      <pre><span class="cm"># .github/workflows/ci.yml  — runs on every pull request to main</span>
+<span class="kw">name</span>: CI Pipeline
+
+<span class="kw">on</span>:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+<span class="kw">jobs</span>:
+  <span class="nm">backend-ci</span>:
+    runs-on: ubuntu-latest
+    steps:
+      - <span class="kw">name</span>: Checkout code
+        uses: actions/checkout@v4
+
+      - <span class="kw">name</span>: Install dependencies
+        run: <span class="nm">cd backend && npm ci</span>
+
+      - <span class="kw">name</span>: TypeScript type check
+        run: <span class="nm">cd backend && npm run typecheck</span>
+
+      - <span class="kw">name</span>: ESLint
+        run: <span class="nm">cd backend && npm run lint</span>
+
+      - <span class="kw">name</span>: Run tests with coverage
+        run: <span class="nm">cd backend && npm run test:coverage</span>
+        env:
+          DATABASE_URL: <span class="str">${{ secrets.TEST_DATABASE_URL }}</span>
+
+      - <span class="kw">name</span>: Enforce 80% coverage  <span class="cm"># NFR-O01</span>
+        run: <span class="nm">cd backend && npm run coverage:check</span>
+        <span class="cm"># jest.config coverage threshold: 80%</span>
+
+      - <span class="kw">name</span>: Secrets scan (GitGuardian)  <span class="cm"># NFR-O02</span>
+        uses: GitGuardian/ggshield-action@v1
+
+  <span class="nm">frontend-ci</span>:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: <span class="nm">cd frontend && npm ci</span>
+      - run: <span class="nm">cd frontend && npm run typecheck</span>
+      - run: <span class="nm">cd frontend && npm run lint</span>
+      - run: <span class="nm">cd frontend && npm run test</span>
+      - run: <span class="nm">cd frontend && npm run build</span>
+        <span class="cm"># Verifies production build succeeds</span>
+
+  <span class="nm">deploy-staging</span>:
+    needs: [backend-ci, frontend-ci]
+    if: github.ref == <span class="str">'refs/heads/main'</span>
+    runs-on: ubuntu-latest
+    steps:
+      - <span class="kw">name</span>: Deploy backend to Railway (staging)
+        run: railway up --environment staging
+      - <span class="kw">name</span>: Deploy frontend to Vercel (preview)
+        run: vercel deploy --prebuilt</pre>
+    </div>
+  </div>
+
+  <h3 id="sprint1-review">Sprint 1 Review Meeting</h3>
+  <p><em style="color:var(--text3)">Friday 10 May 2024, 15:00–16:00 — Google Meet with Nadia attending</em></p>
+
+  <div class="conv">
+    <div class="conv-line">
+      <span class="speaker sp-you">You</span>
+      <span class="speech">Nadia, thank you for joining. What we promised: a working product catalogue with browsing and cart. Let me share my screen — Sara, would you demo?</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-dev" style="color:#38bdf8">Sara</span>
+      <span class="speech">Sure. [shares staging URL] Here's the catalogue — 8 products loaded from the real database. You can see the filter by category works — click "Nuts"... only nuts show. Almonds are out of stock — see the grey badge, the button is disabled. Click "Cashews"... add to cart. Cart updates in the header. Open product detail... all the info is there. Close and reopen the browser — cart persisted in local storage.</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-client">Nadia</span>
+      <span class="speech">Oh this is good! One thing — on my phone the images look a bit small. Can we make them bigger on mobile?</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-you">You</span>
+      <span class="speech">Noted. Sara, can you add that to the backlog? We'll fix it in Sprint 2 as a quick UI improvement — it's not blocking anything. Nadia, anything else?</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-client">Nadia</span>
+      <span class="speech">I love that out-of-stock products are still showing — customers can see what to expect when it comes back. That was important to me.</span>
+    </div>
+    <div class="conv-line">
+      <span class="speaker sp-you">You</span>
+      <span class="speech">Great. Sprint 1 goal: met. All 7 backlog items completed and deployed to staging. 27 story points delivered. Sprint 2 starts Monday.</span>
+    </div>
+  </div>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-sprint">SR</div>
+      <div class="doc-title">Sprint 1 Review Summary</div>
+      <div class="doc-id">DOC-016</div>
+    </div>
+    <div class="doc-body">
+      <p><strong style="color:var(--text)">Sprint Goal:</strong> <span class="spill sp-done">ACHIEVED</span> &nbsp; All items completed and accepted by client.</p>
+      <p><strong style="color:var(--text)">Velocity:</strong> 27 points delivered (matches estimate — first sprint baseline established).</p>
+      <p><strong style="color:var(--text)">Acceptance:</strong> Nadia approved all acceptance criteria with one enhancement request (BP-033: larger product images on mobile, added to backlog for Sprint 2).</p>
+      <p><strong style="color:var(--text)">Technical health:</strong> Test coverage 84% (above 80% threshold). 0 linting errors. CI pipeline green. Staging deployment live.</p>
+    </div>
+  </div>
+
+  <h3>Sprint 1 Retrospective</h3>
+  <p>The retrospective is a private team meeting — Nadia does not attend. The team reflects on the process, not the product.</p>
+
+  <div class="retro-grid">
+    <div class="retro-col rc-good">
+      <div class="rc-head">What went well</div>
+      <div class="rc-item">CI/CD pipeline caught a test regression on Day 4 before it hit main</div>
+      <div class="rc-item">Pairing (Sara+Omar) improved code quality and shared knowledge</div>
+      <div class="rc-item">TDD forced Kareem to clarify the API contract early</div>
+      <div class="rc-item">Staging environment meant Nadia could see real progress</div>
+      <div class="rc-item">Daily scrums stayed under 15 minutes</div>
+    </div>
+    <div class="retro-col rc-bad">
+      <div class="rc-head">What could improve</div>
+      <div class="rc-item">BP-003 API was not ready when Sara needed it — blocked UI work</div>
+      <div class="rc-item">No design mockups agreed before coding — some UI rework needed</div>
+      <div class="rc-item">PR reviews taking 1+ days — need same-day turnaround SLA</div>
+      <div class="rc-item">Test data in DB was inconsistent — different products each run</div>
+    </div>
+    <div class="retro-col rc-do">
+      <div class="rc-head">Action items for Sprint 2</div>
+      <div class="rc-item">Kareem to finish API one day before UI team needs it</div>
+      <div class="rc-item">Sara to do quick Figma wireframe (1 hour) before each major UI task</div>
+      <div class="rc-item">Team agreement: PRs reviewed within 4 hours (working hours)</div>
+      <div class="rc-item">Layla to set up seed script for consistent test DB state</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     PHASE 5: SPRINTS 2–5
+═══════════════════════════════════════════════════════════════ -->
+<section class="phase" id="sprint2">
+  <div class="phase-header">
+    <div class="phase-tag p5">Phase 5 — Sprints 2–5 (Weeks 7–14)</div>
+    <h2>Sprints 2–5 — Full System Delivery</h2>
+    <p class="phase-desc">Sprints 2–5 follow the same Scrum structure as Sprint 1. Each sprint produces a shippable increment. Key events and decisions are documented below.</p>
+  </div>
+
+  <h3 id="sprint2">Sprint 2 — Admin Panel &amp; Product Management</h3>
+  <p><em style="color:var(--text3)">13–24 May 2024 · Goal: Admin can log in, manage all products, and track stock.</em></p>
+
+  <div class="callout call-blue">
+    <strong>Sprint 2 Key Events</strong>
+    <p><strong style="color:var(--text)">Planning:</strong> Team notes BP-010 (admin product UI with Cloudinary) is the riskiest item — image upload involves a new integration. Omar volunteers to spike it on Day 1 (2-hour timebox) to confirm viability before committing to the sprint.</p>
+    <p><strong style="color:var(--text)">Day 2 spike outcome:</strong> Cloudinary React widget integrates in ~1 day. Omar's estimate confirmed. Spike discarded; real implementation begins.</p>
+    <p><strong style="color:var(--text)">Scrum blocker (Day 6):</strong> Kareem discovers PostgreSQL row-level security on Supabase is blocking the admin API's direct queries. Fix: add service role key in environment variables. Resolved in 2 hours. You update DOC-007 (Architecture Document) with this Supabase configuration note.</p>
+    <p><strong style="color:var(--text)">Sprint Review:</strong> Nadia demo'd the admin panel. Her reaction: "This is exactly what I wanted. I added three products and it took me 4 minutes — including photos." Acceptance criteria for BP-011 (low-stock alerts) required additional testing — Layla created a seed script to put products below threshold. All 5 items accepted.</p>
+    <p><strong style="color:var(--text)">Retrospective action:</strong> Team agrees to write a "Dev Runbook" (DOC-019) — setup instructions for local development — after Kareem joined mid-sprint from a new laptop and spent 3 hours setting up the environment.</p>
+  </div>
+
+  <table class="tbl">
+    <thead><tr><th>Item</th><th>Points</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>BP-008 Admin authentication</td><td>5</td><td class="sp-done">Done</td></tr>
+      <tr><td>BP-009 Product CRUD API</td><td>5</td><td class="sp-done">Done</td></tr>
+      <tr><td>BP-010 Admin product UI + Cloudinary</td><td>8</td><td class="sp-done">Done</td></tr>
+      <tr><td>BP-011 Stock management + alerts</td><td>5</td><td class="sp-done">Done</td></tr>
+      <tr><td>BP-012 Customer auth (register/login)</td><td>5</td><td class="sp-done">Done</td></tr>
+      <tr><td>BP-033 Larger images on mobile (retro action)</td><td>1</td><td class="sp-done">Done</td></tr>
+    </tbody>
+  </table>
+
+  <h3 id="sprint3">Sprint 3 — Checkout, Payments &amp; Order Flow</h3>
+  <p><em style="color:var(--text3)">27 May – 7 Jun 2024 · Goal: Customer can complete a purchase — card or COD.</em></p>
+
+  <div class="callout call-amber">
+    <strong>Sprint 3 Key Events — The Most Complex Sprint</strong>
+    <p><strong style="color:var(--text)">Planning risk:</strong> This sprint was estimated at 37 points. You and the team renegotiated scope before Day 1, moving BP-019 (promo codes) to Sprint 4. Adjusted: 32 points — still aggressive but achievable.</p>
+    <p><strong style="color:var(--text)">Stripe webhook complexity:</strong> Per ADR-002, order creation is triggered by a Stripe webhook, not the frontend redirect. Kareem spends Day 3–4 implementing idempotent webhook handling. The key challenge: Stripe can send the same event twice. Solution: store processed Stripe event IDs in a DB table; skip if already processed. This is an elegant example of how architecture decisions from Phase 2 translate to real code decisions.</p>
+    <p><strong style="color:var(--text)">UML Activity Diagram produced:</strong> You draw a checkout flow activity diagram (DOC-018) to clarify the Stripe webhook flow for the team. It shows: Customer clicks Pay → Stripe payment form → Stripe sends webhook → Backend confirms → Stock decremented → Email sent → Frontend polls for order status. This diagram removes ambiguity between Kareem (backend) and Omar (frontend polling).</p>
+    <p><strong style="color:var(--text)">COD edge case:</strong> In the daily scrum on Day 7, Omar raises: "What happens if a COD customer gives a fake name? There's no payment verification." You and Nadia discuss via WhatsApp. Decision: COD orders have status "Pending" until Nadia manually confirms. Added as acceptance criterion update. Requirements do evolve during development — this is handled through the informal agile change process (not formal CR) since it was a clarification, not a new requirement.</p>
+    <p><strong style="color:var(--text)">Sprint Review:</strong> Nadia performs a full test purchase on staging — adds two products, enters her real address, pays with a Stripe test card. "It worked! I got the email." Sprint goal: achieved. Velocity: 32 points delivered.</p>
+  </div>
+
+  <h3 id="sprint4">Sprint 4 — Admin Order Operations &amp; Invoicing</h3>
+  <p><em style="color:var(--text3)">10–21 Jun 2024 · Goal: Nadia can manage all orders, generate invoices, and handle cancellations.</em></p>
+
+  <div class="callout call-purple">
+    <strong>Sprint 4 Key Events</strong>
+    <p><strong style="color:var(--text)">Requirements clarification (Day 1):</strong> Nadia messages you: "Can I also mark orders as 'Problem' if the customer isn't reachable?" You add this as a new order status. It's a small requirements change — no formal CR needed (it's a single-field addition). You update FR-016 in the SRS to include the "Problem" status.</p>
+    <p><strong style="color:var(--text)">Invoice generation:</strong> Omar uses pdfmake library to generate VAT invoices (BP-022). The invoice includes: order number, date, itemised products, delivery cost, promo discount (if any), VAT (14%), and total. You send a draft to Nadia's accountant for review — the accountant requests the shop's tax registration number be added. FR-022 updated. This is requirements validation catching an omission in real use — exactly what Sommerville describes.</p>
+    <p><strong style="color:var(--text)">Sprint Review:</strong> Nadia processes 5 real orders that came in during the review period using the admin panel for the first time. "This took me 8 minutes total. That's usually 2 hours of messages." Sprint goal achieved. 31 points delivered.</p>
+    <p><strong style="color:var(--text)">Retrospective:</strong> Team notes that the test suite has grown significantly and takes 4 minutes to run locally. Action: Layla investigates Jest parallel execution — reduces to 90 seconds. This is process improvement driven by the team.</p>
+  </div>
+
+  <h3 id="sprint5">Sprint 5 — Search, Performance, E2E Tests &amp; Launch</h3>
+  <p><em style="color:var(--text3)">24 Jun – 5 Jul 2024 · Goal: Production-ready system, launched and tested end-to-end.</em></p>
+
+  <div class="callout call-green">
+    <strong>Sprint 5 Key Events</strong>
+    <p><strong style="color:var(--text)">Performance (BP-028):</strong> Layla runs an initial Lighthouse audit — Performance score: 64. Main culprits: unoptimised product images (average 800KB each) and no caching. Fixes: Cloudinary auto-format (WebP, 400KB average), React.lazy for code splitting, cache-control headers on the API. Final score: 91. NFR-P01 (2 second load) now met.</p>
+    <p><strong style="color:var(--text)">E2E tests (BP-029):</strong> Layla writes Playwright tests covering: full purchase flow (browse → cart → checkout → card payment → order confirmation), admin order processing (login → view order → update status → generate invoice), and search. These run against the staging environment.</p>
+    <p><strong style="color:var(--text)">Production deployment (BP-031):</strong> Custom domain (nadiafoods.com) connected to Vercel. SSL certificate auto-issued via Let's Encrypt. Environment variables verified (production Stripe keys, not test keys — checklist item). DNS propagated within 2 hours.</p>
+    <p><strong style="color:var(--text)">Usability test (NFR-P05):</strong> Nadia's cousin (no technical background) given the staging URL and asked to find a product, add it to cart, and check out. Time: 6 minutes 40 seconds. Well under the 10-minute threshold. NFR-P05: passed.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     PHASE 6: TESTING
+═══════════════════════════════════════════════════════════════ -->
+<section class="phase" id="component-test">
+  <div class="phase-header">
+    <div class="phase-tag p6">Phase 6 — Testing</div>
+    <h2>Validation &amp; Testing</h2>
+    <p class="phase-desc">Sommerville's staged testing model — component testing, system integration testing, and customer testing — applied to ShopFlow. All six testing stages are mapped here.</p>
+  </div>
+
+  <h3>Testing Stages Overview</h3>
+
+  <table class="tbl">
+    <thead><tr><th>Stage</th><th>What</th><th>Who</th><th>Tools</th><th>Timing</th></tr></thead>
+    <tbody>
+      <tr><td class="hi">1. Unit (Component) Testing</td><td>Individual functions, services, React components in isolation</td><td>Developers (each tests their own code, TDD)</td><td>Jest, React Testing Library, MSW</td><td>Continuous — every PR</td></tr>
+      <tr><td class="hi">2. Integration Testing</td><td>API endpoints with real database, Stripe mock webhooks</td><td>Layla (QA)</td><td>Jest + Supertest, Stripe CLI test mode</td><td>End of each sprint</td></tr>
+      <tr><td class="hi">3. System Testing</td><td>Full system — frontend + backend + DB — on staging</td><td>Layla + you</td><td>Playwright E2E</td><td>Sprint 5</td></tr>
+      <tr><td class="hi">4. Performance Testing</td><td>Load (100 concurrent users), Lighthouse score, API response times</td><td>Layla</td><td>k6, Lighthouse CI, Artillery</td><td>Sprint 5 pre-launch</td></tr>
+      <tr><td class="hi">5. Security Testing</td><td>Auth, SQL injection, OWASP Top 10 basic scan, card data check</td><td>Kareem + Layla</td><td>OWASP ZAP, Snyk, manual</td><td>Sprint 5 pre-launch</td></tr>
+      <tr><td class="hi">6. Customer (UAT) Testing</td><td>Real users test real scenarios on staging with production data</td><td>Nadia + 3 test customers</td><td>Manual, Hotjar session recordings</td><td>Sprint 5, Week 1</td></tr>
+    </tbody>
+  </table>
+
+  <h3 id="system-test">System Integration Test Results</h3>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-test">SIT</div>
+      <div class="doc-title">System Integration Test Report — Pre-Launch</div>
+      <div class="doc-id">DOC-020</div>
+    </div>
+    <div class="doc-body">
+      <table class="tbl">
+        <thead><tr><th>Test Case</th><th>Expected</th><th>Result</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>TC-001: Browse + filter products</td><td>Products load in &lt;2s, filter updates instantly</td><td>1.2s load, filter &lt;100ms</td><td class="sp-done">PASS</td></tr>
+          <tr><td>TC-002: Add to cart — in-stock product</td><td>Cart updates, quantity shown in header</td><td>As expected</td><td class="sp-done">PASS</td></tr>
+          <tr><td>TC-003: Add to cart — out-of-stock</td><td>Button disabled, cannot add</td><td>Button correctly disabled</td><td class="sp-done">PASS</td></tr>
+          <tr><td>TC-004: Concurrent checkout — last unit</td><td>One succeeds, other gets "out of stock" error</td><td>Race condition handled by DB transaction</td><td class="sp-done">PASS</td></tr>
+          <tr><td>TC-005: Card payment — Stripe test card</td><td>Order confirmed, email sent, stock decremented</td><td>All three events confirmed via logs</td><td class="sp-done">PASS</td></tr>
+          <tr><td>TC-006: Card payment — 3DS challenge</td><td>3DS modal shown, order completes on success</td><td>Stripe test 3DS card worked</td><td class="sp-done">PASS</td></tr>
+          <tr><td>TC-007: COD checkout</td><td>Order created with Pending status, no payment processed</td><td>As expected</td><td class="sp-done">PASS</td></tr>
+          <tr><td>TC-008: Promo code — valid</td><td>Discount applied to order total</td><td>As expected</td><td class="sp-done">PASS</td></tr>
+          <tr><td>TC-009: Promo code — expired</td><td>"Code expired" error message shown</td><td>As expected</td><td class="sp-done">PASS</td></tr>
+          <tr><td>TC-010: Admin order status update</td><td>Order status changes, customer can see update</td><td>As expected</td><td class="sp-done">PASS</td></tr>
+          <tr><td>TC-011: Invoice PDF generation</td><td>PDF contains all required fields including 14% VAT</td><td>Accountant verified format</td><td class="sp-done">PASS</td></tr>
+          <tr><td>TC-012: Admin — non-admin user access</td><td>401 Unauthorized on admin routes</td><td>Routes correctly protected</td><td class="sp-done">PASS</td></tr>
+          <tr><td>TC-013: Stock reservation expiry</td><td>Reserved stock released after 15 minutes</td><td>Cron job tested — released at 15:00 ± 30s</td><td class="sp-done">PASS</td></tr>
+          <tr><td>TC-014: Stripe webhook duplicate event</td><td>Second identical event ignored (idempotency)</td><td>Duplicate event ID detected and skipped</td><td class="sp-done">PASS</td></tr>
+          <tr><td>TC-015: Mobile responsive — 375px</td><td>No horizontal scroll, all buttons reachable</td><td>Minor: checkout button too small on iPhone SE</td><td class="sp-block">FIXED</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3 id="uat">User Acceptance Testing (UAT)</h3>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-test">UAT</div>
+      <div class="doc-title">UAT Session Report</div>
+      <div class="doc-id">DOC-021</div>
+    </div>
+    <div class="doc-body">
+      <p><em style="color:var(--text3);font-size:.8rem">Date: 30 June 2024 · Participants: Nadia (client/admin), 3 invited customers (real users, test purchases with 10 EGP test orders)</em></p>
+      <p><strong style="color:var(--text)">Customer Findings:</strong></p>
+      <table class="tbl">
+        <thead><tr><th>Finding</th><th>Severity</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>Two customers confused by "subtotal before delivery" line — expected to see delivery cost earlier in checkout</td><td class="sp-med">Medium</td><td>Move delivery cost display to cart summary. Omar fixed in 2 hours before launch.</td></tr>
+          <tr><td>One customer tried to apply a promo code during cart view, not at checkout step 2</td><td class="sp-low">Low</td><td>Added promo code field to cart summary page. Added to BP-034, Sprint 6.</td></tr>
+          <tr><td>All three customers completed checkout successfully without assistance</td><td>—</td><td>NFR-P05 confirmed met in real-user conditions.</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:.75rem"><strong style="color:var(--text)">Admin (Nadia) Findings:</strong></p>
+      <table class="tbl">
+        <thead><tr><th>Finding</th><th>Severity</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>Nadia couldn't find the "Export orders" function — it doesn't exist yet</td><td class="sp-med">Medium</td><td>Added to backlog as BP-035 (Sprint 6 / post-launch evolution). Out of scope for v1.</td></tr>
+          <tr><td>Low-stock alert threshold is set per product but there's no "set all to 5" option — tedious for 60 products</td><td class="sp-low">Low</td><td>Added BP-036: bulk threshold setting. Sprint 6.</td></tr>
+          <tr><td>Dashboard metrics loaded correctly, order management flow worked perfectly</td><td>—</td><td>UAT passed for admin core functionality.</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:.75rem"><strong style="color:var(--text)">UAT Outcome:</strong> System accepted for launch with one medium fix (delivery cost display) completed before go-live. Non-critical items added to post-launch backlog. Nadia signed the UAT acceptance form on 2 July 2024.</p>
+    </div>
+  </div>
+
+  <h3 id="vmodel">V-Model Testing Map</h3>
+  <p>Sommerville's V-model shows how each testing stage corresponds to a development stage. This is how ShopFlow maps to it:</p>
+
+  <table class="tbl">
+    <thead><tr><th>Development Stage</th><th>Corresponding Test Stage</th><th>ShopFlow Document</th></tr></thead>
+    <tbody>
+      <tr><td>Requirements Specification</td><td>Customer Acceptance Tests (UAT)</td><td>UAT scenarios derived from SRS (DOC-005) / User Stories</td></tr>
+      <tr><td>System Architecture Design</td><td>System Integration Tests</td><td>SIT test cases (DOC-020) — test API endpoints and DB integrations</td></tr>
+      <tr><td>Component Design (Sprint tasks)</td><td>Integration Tests</td><td>Supertest API tests + webhook integration tests</td></tr>
+      <tr><td>Implementation (code)</td><td>Unit Tests (TDD)</td><td>Jest test suites written alongside each service/component</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     PHASE 7: EVOLUTION
+═══════════════════════════════════════════════════════════════ -->
+<section class="phase" id="launch">
+  <div class="phase-header">
+    <div class="phase-tag p7">Phase 7 — Post-Launch Evolution</div>
+    <h2>Launch, Monitoring &amp; Continuous Evolution</h2>
+    <p class="phase-desc">Sommerville: "Development and maintenance are increasingly seen as a continuum rather than separate activities." The system does not stop at launch — it evolves in response to real use, new requirements, and change requests.</p>
+  </div>
+
+  <h3>Step 19 — Go-Live Checklist</h3>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-evo">GL</div>
+      <div class="doc-title">Production Go-Live Checklist — 5 July 2024</div>
+      <div class="doc-id">DOC-022</div>
+    </div>
+    <div class="doc-body">
+      <p>✓ &nbsp;Production Stripe keys in environment (not test keys)<br>
+      ✓ &nbsp;Domain nadiafoods.com pointing to Vercel — SSL active<br>
+      ✓ &nbsp;All 23 FRs verified on production environment<br>
+      ✓ &nbsp;All 8 NFRs measured and met (see DOC-021)<br>
+      ✓ &nbsp;Nadia admin account created with strong password<br>
+      ✓ &nbsp;Uptime Robot monitoring configured (alert via SMS to Nadia + you)<br>
+      ✓ &nbsp;60 products loaded with photos and correct stock levels<br>
+      ✓ &nbsp;Delivery zone pricing table verified with Nadia<br>
+      ✓ &nbsp;VAT invoice format approved by accountant<br>
+      ✓ &nbsp;Client training session completed and recorded (DOC-023)<br>
+      ✓ &nbsp;Database backup policy active (Supabase daily backups)<br>
+      ✓ &nbsp;Error tracking (Sentry) connected to production<br>
+      ✓ &nbsp;Privacy policy and cookie notice live on site</p>
+    </div>
+  </div>
+
+  <h3 id="monitoring">Step 20 — Post-Launch Monitoring</h3>
+
+  <div class="doc-block">
+    <div class="doc-header">
+      <div class="doc-icon icon-evo">PM</div>
+      <div class="doc-title">Week 1 Post-Launch Report — 12 July 2024</div>
+      <div class="doc-id">DOC-024</div>
+    </div>
+    <div class="doc-body">
+      <p><strong style="color:var(--text)">Orders placed:</strong> 47 (vs. Nadia's previous average of 30/week via DM)<br>
+      <strong style="color:var(--text)">Payment method split:</strong> 61% Card, 39% COD — COD adoption higher than expected<br>
+      <strong style="color:var(--text)">Uptime:</strong> 99.98% (2-minute outage on Day 3 — Railway restart, auto-recovered)<br>
+      <strong style="color:var(--text)">Avg page load (Lighthouse):</strong> 1.8s — NFR-P01 met<br>
+      <strong style="color:var(--text)">Sentry errors:</strong> 2 unhandled promise rejection errors in the image upload flow — Layla fixed in a hotfix on Day 4<br>
+      <strong style="color:var(--text)">Nadia feedback:</strong> "Yesterday I processed 11 orders in 20 minutes. I used to spend 3 hours on 8. I can't believe the difference."</p>
+    </div>
+  </div>
+
+  <h3 id="change-request">Step 21 — Formal Change Request (CR-001)</h3>
+  <p>Three weeks after launch, Nadia requests a significant new feature. This goes through the formal three-stage change management process (Sommerville Ch. 4).</p>
+
+  <div class="cr-block">
+    <div class="cr-header">
+      <span class="cr-num">CR-001</span>
+      <span class="cr-title">WhatsApp Order Notifications for Admin</span>
+    </div>
+    <div class="doc-body">
+      <p><strong style="color:var(--text)">Stage 1 — Problem Analysis &amp; Change Specification</strong><br>
+      <em>Submitted by: Nadia Al-Hassan · Date: 26 July 2024</em><br>
+      Request: "When a new order comes in, I want to receive a WhatsApp message with the order details, not just an email. I don't always check email immediately but I always see WhatsApp."<br>
+      Analysis: Valid and consistent with the system's purpose (improving Nadia's operational efficiency). The request does not conflict with any existing requirement. Technical approach: Twilio WhatsApp Business API. The system already sends emails via SendGrid — adding WhatsApp notification is an additive change, not a structural one. <span class="spill sp-done">VALID — proceed to Stage 2.</span></p>
+
+      <p style="margin-top:.75rem"><strong style="color:var(--text)">Stage 2 — Change Analysis &amp; Costing</strong><br>
+      Impact on SRS: adds FR-024 "The system shall send a WhatsApp notification to the admin phone number when a new order is placed."<br>
+      Impact on architecture: Twilio integration in the notification service (currently only SendGrid). Low coupling — notification service is already extracted.<br>
+      Estimate: 2 days development (Kareem: Twilio API integration + test), 0.5 days QA.<br>
+      Cost: Twilio WhatsApp per message: ~0.005 USD. At 50 orders/week: ~$0.25/week. Negligible.<br>
+      Traceability: FR-024 traces to US-004 (order management) and the architectural notification service component.<br>
+      Decision: <span class="spill sp-done">APPROVED — add to Sprint 6 backlog as BP-037.</span></p>
+
+      <p style="margin-top:.75rem"><strong style="color:var(--text)">Stage 3 — Change Implementation</strong><br>
+      SRS v1.2 updated to include FR-024. ADR-003 created: "Use Twilio for WhatsApp notifications — same pattern as SendGrid for email." BP-037 added to product backlog. Implemented in Sprint 6. Nadia tested and confirmed working. SRS v1.2 signed 5 August 2024.</p>
+    </div>
+  </div>
+
+  <h3 id="evolution">Sprint 6 — Maintenance &amp; Evolution</h3>
+  <p>Sommerville: "Software evolution takes place when you change existing software systems to meet new requirements. Changes are continuous, and the software must evolve to remain useful." Sprint 6 is the first maintenance sprint.</p>
+
+  <div class="callout call-blue">
+    <strong>Sprint 6 Backlog (4 Aug – 16 Aug 2024)</strong>
+    <p>BP-034: Promo code field in cart summary view (UAT finding)<br>
+    BP-035: Export orders as CSV (Nadia's operational need)<br>
+    BP-036: Bulk stock threshold setting for all products<br>
+    BP-037: WhatsApp notification for new orders (CR-001)<br>
+    BP-038: Bug fix — Sentry error in image upload (hotfix already deployed, but needs proper test coverage)</p>
+    <p style="margin-top:.5rem">The team now has a measured velocity of 29 points/sprint (average of Sprints 1–5). Sprint 6 estimate: 22 points. Conservative — the team is maintaining an existing system now, which requires more careful regression testing than greenfield development.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     REFERENCE
+═══════════════════════════════════════════════════════════════ -->
+<section class="phase" id="all-docs">
+  <div class="phase-header">
+    <div class="phase-tag p0">Reference</div>
+    <h2>Complete Document &amp; Concept Register</h2>
+    <p class="phase-desc">Every document produced in this project, and every Sommerville concept applied.</p>
+  </div>
+
+  <h3>All Documents Produced</h3>
+
+  <table class="tbl">
+    <thead><tr><th>Doc ID</th><th>Document</th><th>Phase</th><th>Sommerville Ch.</th></tr></thead>
+    <tbody>
+      <tr><td class="hi">DOC-001</td><td>Pre-Discovery Open Interview Framework</td><td>Phase 0</td><td>Ch. 4 — Requirements elicitation, interviewing</td></tr>
+      <tr><td class="hi">DOC-002</td><td>Discovery Meeting Transcript (Open Interview + Ethnography)</td><td>Phase 0</td><td>Ch. 4 — Ethnography, stories</td></tr>
+      <tr><td class="hi">DOC-003</td><td>Feasibility Study</td><td>Phase 0</td><td>Ch. 4 — Feasibility studies</td></tr>
+      <tr><td class="hi">DOC-004</td><td>Use Case Diagram</td><td>Phase 1</td><td>Ch. 4 — Use cases, UML</td></tr>
+      <tr><td class="hi">DOC-005</td><td>Software Requirements Specification (SRS) v1.0 → v1.2</td><td>Phase 1</td><td>Ch. 4 — SRS, IEEE standard</td></tr>
+      <tr><td class="hi">DOC-006</td><td>Requirements Validation Report</td><td>Phase 1</td><td>Ch. 4 — Requirements validation (5 checks)</td></tr>
+      <tr><td class="hi">DOC-007</td><td>System Architecture Document</td><td>Phase 2</td><td>Ch. 2 — Architectural design</td></tr>
+      <tr><td class="hi">DOC-008</td><td>Database Entity-Relationship Design (ERD)</td><td>Phase 2</td><td>Ch. 2 — Database design</td></tr>
+      <tr><td class="hi">DOC-009</td><td>Definition of Done</td><td>Phase 3</td><td>Ch. 3 — Scrum, agile practices</td></tr>
+      <tr><td class="hi">DOC-010</td><td>Sprint 1 Planning Meeting Notes</td><td>Phase 4</td><td>Ch. 3 — Sprint planning, sprint backlog</td></tr>
+      <tr><td class="hi">DOC-011–012</td><td>Daily Scrum Transcripts (all sprints)</td><td>Phases 4–5</td><td>Ch. 3 — Scrum, daily standup</td></tr>
+      <tr><td class="hi">DOC-013</td><td>TDD Test Suite (products.service.test.ts)</td><td>Phase 4</td><td>Ch. 3 — Test-first development</td></tr>
+      <tr><td class="hi">DOC-014</td><td>Pair Programming Session Log</td><td>Phase 4</td><td>Ch. 3 — Pair programming</td></tr>
+      <tr><td class="hi">DOC-015</td><td>CI/CD Pipeline Configuration</td><td>Phase 4</td><td>Ch. 3 — Continuous integration, XP practices</td></tr>
+      <tr><td class="hi">DOC-016</td><td>Sprint Review Summaries (Sprints 1–5)</td><td>Phases 4–5</td><td>Ch. 3 — Sprint review</td></tr>
+      <tr><td class="hi">DOC-017</td><td>Sprint Retrospective Notes (all sprints)</td><td>Phases 4–5</td><td>Ch. 3 — Retrospective, process improvement</td></tr>
+      <tr><td class="hi">DOC-018</td><td>Checkout Flow Activity Diagram (UML)</td><td>Phase 5</td><td>Ch. 4 — Scenarios, UML models</td></tr>
+      <tr><td class="hi">DOC-019</td><td>Developer Runbook (retro action)</td><td>Phase 5</td><td>Ch. 2 — Process documentation</td></tr>
+      <tr><td class="hi">DOC-020</td><td>System Integration Test Report</td><td>Phase 6</td><td>Ch. 2 — System testing, V-model</td></tr>
+      <tr><td class="hi">DOC-021</td><td>UAT Session Report + Acceptance Sign-off</td><td>Phase 6</td><td>Ch. 2 — Customer testing</td></tr>
+      <tr><td class="hi">DOC-022</td><td>Production Go-Live Checklist</td><td>Phase 7</td><td>Ch. 2 — Software deployment</td></tr>
+      <tr><td class="hi">DOC-023</td><td>Client Training Recording</td><td>Phase 7</td><td>Ch. 1 — Software as a system (documentation)</td></tr>
+      <tr><td class="hi">DOC-024</td><td>Post-Launch Monitoring Report</td><td>Phase 7</td><td>Ch. 2 — Software evolution, process measurement</td></tr>
+      <tr><td class="hi">CR-001</td><td>Change Request: WhatsApp Notifications</td><td>Phase 7</td><td>Ch. 4 — Requirements change management (3 stages)</td></tr>
+      <tr><td class="hi">ADR-001–003</td><td>Architecture Decision Records</td><td>Phase 2+</td><td>Ch. 2 — Design decisions, documentation</td></tr>
+      <tr><td class="hi">SH-Register</td><td>Stakeholder Register</td><td>Phase 1</td><td>Ch. 4 — Stakeholders</td></tr>
+      <tr><td class="hi">US-001–009</td><td>User Story Cards (9 stories)</td><td>Phase 1</td><td>Ch. 3 — User stories, XP story cards</td></tr>
+      <tr><td class="hi">FR-001–023</td><td>Functional Requirements Table</td><td>Phase 1</td><td>Ch. 4 — Functional requirements</td></tr>
+      <tr><td class="hi">NFR-P01–E03</td><td>Non-Functional Requirements</td><td>Phase 1</td><td>Ch. 4 — Non-functional requirements, testable metrics</td></tr>
+    </tbody>
+  </table>
+
+  <h3 id="concepts-map">Sommerville Concepts Map</h3>
+  <p>Every concept from Chapters 1–4 applied in this project:</p>
+
+  <table class="tbl">
+    <thead><tr><th>Concept (Sommerville)</th><th>Where Applied in ShopFlow</th></tr></thead>
+    <tbody>
+      <tr><td class="hi">Ch1: Software is not just programs</td><td>DOC-023 (training), DOC-019 (runbook), privacy policy, admin manual — all delivered as part of the system</td></tr>
+      <tr><td class="hi">Ch1: Four fundamental activities</td><td>Specification (Phase 0–1), Development (Phase 4–5), Validation (Phase 6), Evolution (Phase 7)</td></tr>
+      <tr><td class="hi">Ch1: Essential software attributes</td><td>NFRs explicitly address: acceptability (usability test), dependability (uptime monitoring), efficiency (Lighthouse), maintainability (code coverage, ADRs)</td></tr>
+      <tr><td class="hi">Ch1: Interactive transaction-based system</td><td>ShopFlow is explicitly this type (Sommerville Type 2) — distributed, web-based, large data store</td></tr>
+      <tr><td class="hi">Ch1: Custom vs. generic software</td><td>ShopFlow is custom — Nadia controls the specification. Generic alternatives (Shopify) were considered and rejected due to cost and customisation limits (noted in feasibility study)</td></tr>
+      <tr><td class="hi">Ch1: ACM/IEEE Ethics</td><td>PCI-DSS compliance (security), privacy policy (public interest), no card data stored (product ethics)</td></tr>
+      <tr><td class="hi">Ch2: Incremental development</td><td>5 sprints, each delivering a shippable increment. Nadia received value from Sprint 3 onwards (purchase flow live)</td></tr>
+      <tr><td class="hi">Ch2: Architectural design</td><td>DOC-007 — three-tier architecture decision made before implementation; recorded with rationale</td></tr>
+      <tr><td class="hi">Ch2: Software validation — 3 stages</td><td>Component tests (Jest), System tests (Playwright), Customer tests (UAT with Nadia + real customers)</td></tr>
+      <tr><td class="hi">Ch2: V-model testing</td><td>Explicit mapping table: requirements → UAT, architecture → SIT, component design → integration tests, code → unit tests</td></tr>
+      <tr><td class="hi">Ch2: Change anticipation (prototyping)</td><td>Spike on Cloudinary integration (Sprint 2) before committing to estimate — Sommerville's "prototype to reduce risk"</td></tr>
+      <tr><td class="hi">Ch2: Change tolerance (incremental delivery)</td><td>BP-019 (promo codes) deprioritised from Sprint 3 to Sprint 4 without disrupting the sprint — incremental structure enables this</td></tr>
+      <tr><td class="hi">Ch2: Process improvement</td><td>Sprint retrospectives → action items → measured improvements (Jest parallel execution: 4min → 90s)</td></tr>
+      <tr><td class="hi">Ch3: Agile manifesto</td><td>Working software (every sprint demo): over docs. Customer collaboration (Nadia in every review): over contracts. Responding to change (CR-001): over plan.</td></tr>
+      <tr><td class="hi">Ch3: User stories (XP)</td><td>US-001 through US-009 — story card format with acceptance criteria and task breakdown</td></tr>
+      <tr><td class="hi">Ch3: Test-first development</td><td>DOC-013 — tests written before products.service.ts. Demonstrated throughout all backend services</td></tr>
+      <tr><td class="hi">Ch3: Refactoring</td><td>ProductCard → ProductImage + StockBadge (Sprint 1 pair programming); Jest parallel execution improvement (Sprint 4)</td></tr>
+      <tr><td class="hi">Ch3: Pair programming</td><td>DOC-014 — Sara + Omar, Sprint 1. Caught filter state bug and initiated ProductCard refactoring</td></tr>
+      <tr><td class="hi">Ch3: Continuous integration</td><td>DOC-015 — every PR triggers lint + test + coverage + secrets scan + staging deployment</td></tr>
+      <tr><td class="hi">Ch3: Scrum — product backlog</td><td>32 backlog items, prioritised by Nadia, estimated in story points by team, velocity measured</td></tr>
+      <tr><td class="hi">Ch3: Scrum — sprint cycle</td><td>5 × 2-week sprints. Each: planning → daily scrums → review → retrospective</td></tr>
+      <tr><td class="hi">Ch3: Scrum — ScrumMaster role</td><td>You: remove blockers (Node version, Supabase RLS), facilitate scrums, shield team (Nadia's ad hoc requests channelled through backlog)</td></tr>
+      <tr><td class="hi">Ch3: Practical limits of agile</td><td>Nadia as part-time PO (not full-time on-site) — pragmatic adaptation. WhatsApp for questions, fortnightly reviews.</td></tr>
+      <tr><td class="hi">Ch3: Agile + plan-based mix</td><td>Architecture designed upfront (plan-based), development executed iteratively (agile) — the practical real-world mix Sommerville describes</td></tr>
+      <tr><td class="hi">Ch4: Stakeholder identification</td><td>SH-Register — 7 stakeholders including regulatory body (Egyptian tax authority) discovered through systematic analysis</td></tr>
+      <tr><td class="hi">Ch4: Open vs. closed interviews</td><td>Meeting 1: open questions (discovery). Meeting 2: closed questions (specific requirements validation)</td></tr>
+      <tr><td class="hi">Ch4: Ethnography</td><td>Watching Nadia process a phone order → discovered 3 requirements not mentioned in interviews: stock reservation, delivery cost calculation, stock-lookup time</td></tr>
+      <tr><td class="hi">Ch4: Stories and scenarios</td><td>Ethnographic observation → stories → user story cards (US-001+). Checkout scenario (DOC-018) used to align Kareem and Omar on webhook flow</td></tr>
+      <tr><td class="hi">Ch4: Functional requirements</td><td>FR-001–023 — numbered, formatted with "shall"/"should" language, sourced to stakeholder, prioritised</td></tr>
+      <tr><td class="hi">Ch4: Non-functional requirements</td><td>NFR-P01–E03 — all written quantitatively with explicit metrics. NFR-P05 rewritten from vague goal to measurable test</td></tr>
+      <tr><td class="hi">Ch4: Requirements classification</td><td>NFRs classified: Product (P01–P05), Organisational (O01–O02), External/Regulatory (E01–E03)</td></tr>
+      <tr><td class="hi">Ch4: SRS document (IEEE)</td><td>DOC-005 — follows IEEE structure: Preface, Introduction, Glossary, User Requirements, Architecture, System Requirements, Evolution, Appendices</td></tr>
+      <tr><td class="hi">Ch4: Requirements validation (5 checks)</td><td>DOC-006 — validity, consistency, completeness, realism, verifiability checks. FR-023 (order cancellation) added through completeness check</td></tr>
+      <tr><td class="hi">Ch4: Requirements change management</td><td>CR-001 — 3-stage process: problem analysis → change analysis/costing → implementation. SRS updated to v1.2</td></tr>
+      <tr><td class="hi">Ch4: Requirements traceability</td><td>FR IDs trace to user stories, use cases, test cases, and sprint backlog items throughout this document</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="footer">
+  <p>ShopFlow · Complete Agile Software Engineering Case Study</p>
+  <p>Based on Sommerville, I. — Software Engineering, Chapters 1–4</p>
+</div>
+
+</main>
+
+<script>
+const sections = document.querySelectorAll('[id]')
+const links = document.querySelectorAll('#sidebar nav a')
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.remove('active'))
+      const active = document.querySelector('#sidebar nav a[href="#'+e.target.id+'"]')
+      if(active) active.classList.add('active')
+    }
+  })
+},{threshold:0.15,rootMargin:'-80px 0px -60% 0px'})
+sections.forEach(s=>obs.observe(s))
+</script>
+</body>
+</html>
