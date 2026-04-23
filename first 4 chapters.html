@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Software Engineering — Sommerville Ch. 1–4 Summary</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #444;
+    --ink-muted: #777;
+    --rule: #e2e0da;
+    --surface: #faf9f6;
+    --card: #ffffff;
+    --accent: #2a5caa;
+    --accent-soft: #eef3fa;
+    --accent2: #1a7a5e;
+    --accent2-soft: #eaf4f0;
+    --accent3: #8a3a8a;
+    --accent3-soft: #f5eef5;
+    --accent4: #b85c00;
+    --accent4-soft: #fdf3e8;
+    --danger: #c0392b;
+    --danger-soft: #fdf0ef;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--surface);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: 16px;
+  }
+
+  .masthead {
+    background: var(--ink);
+    color: #fff;
+    padding: 3.5rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.02) 40px,
+      rgba(255,255,255,0.02) 80px
+    );
+    pointer-events: none;
+  }
+
+  .masthead .eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1rem;
+  }
+
+  .masthead h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: normal;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  .masthead .subtitle {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    font-style: italic;
+  }
+
+  .chapter-nav {
+    background: var(--card);
+    border-bottom: 1px solid var(--rule);
+    padding: 1rem 2rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .chapter-nav a {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--ink-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .chapter-nav a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Chapter sections */
+  .chapter-section {
+    padding: 4rem 0 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .chapter-label {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .chapter-section h2 {
+    font-size: 1.9rem;
+    font-weight: normal;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+  }
+
+  .chapter-section .ch-desc {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    font-weight: bold;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 2.5rem 0 0.75rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  h4 {
+    font-size: 0.95rem;
+    font-weight: bold;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    color: var(--ink-soft);
+  }
+
+  /* Callout boxes */
+  .callout {
+    border-left: 3px solid;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .callout-blue {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .callout-green {
+    border-color: var(--accent2);
+    background: var(--accent2-soft);
+  }
+
+  .callout-purple {
+    border-color: var(--accent3);
+    background: var(--accent3-soft);
+  }
+
+  .callout-amber {
+    border-color: var(--accent4);
+    background: var(--accent4-soft);
+  }
+
+  .callout-red {
+    border-color: var(--danger);
+    background: var(--danger-soft);
+  }
+
+  .callout p { margin-bottom: 0; font-size: 0.93rem; }
+  .callout strong { font-style: normal; font-family: 'Helvetica Neue', Arial, sans-serif; display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+
+  /* Definition list */
+  .def-list { margin: 1rem 0 1.5rem; }
+  .def-item { display: grid; grid-template-columns: 200px 1fr; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--rule); }
+  .def-item:last-child { border-bottom: none; }
+  .def-term {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--ink);
+    padding-top: 2px;
+  }
+  .def-body { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.65; }
+
+  /* Pill list */
+  .pill-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0 1.5rem; }
+  .pill {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    border: 1px solid;
+    line-height: 1.5;
+  }
+  .pill-blue { background: var(--accent-soft); color: #1a4580; border-color: #b5d4f4; }
+  .pill-green { background: var(--accent2-soft); color: #0e5440; border-color: #9fe1cb; }
+  .pill-purple { background: var(--accent3-soft); color: #5e1a6e; border-color: #d7a8e4; }
+  .pill-amber { background: var(--accent4-soft); color: #7a3800; border-color: #fac775; }
+
+  /* Card grid */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+
+  .card .card-number {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .card .card-title {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin-bottom: 0.6rem;
+    color: var(--ink);
+  }
+
+  .card p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+    color: var(--ink-soft);
+  }
+
+  /* Process flow */
+  .process-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+  }
+
+  .process-step {
+    flex: 1;
+    min-width: 120px;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    padding: 1rem;
+    position: relative;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .process-step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-muted);
+    font-size: 1.1rem;
+    z-index: 1;
+    background: var(--surface);
+    padding: 2px;
+  }
+
+  .process-step .step-n {
+    font-size: 10px;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .process-step .step-name {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--ink);
+  }
+
+  /* Table */
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin: 1.5rem 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .summary-table th {
+    background: var(--ink);
+    color: #fff;
+    padding: 0.6rem 1rem;
+    text-align: left;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: normal;
+  }
+
+  .summary-table td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink-soft);
+    vertical-align: top;
+  }
+
+  .summary-table tr:hover td { background: var(--accent-soft); }
+
+  /* Quote */
+  blockquote {
+    border-left: 3px solid var(--rule);
+    padding: 0.75rem 1.5rem;
+    margin: 1.5rem 0;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+
+  /* Key points */
+  .key-points {
+    background: var(--ink);
+    color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+
+  .key-points h3 {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+    font-weight: normal;
+    margin: 0 0 1rem;
+  }
+
+  .key-points ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .key-points ul li {
+    padding: 0.4rem 0;
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-left: 1.25rem;
+    position: relative;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .key-points ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* Two-col */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  @media (max-width: 620px) {
+    .two-col { grid-template-columns: 1fr; }
+    .def-item { grid-template-columns: 1fr; gap: 0.25rem; }
+    .process-flow { flex-direction: column; }
+    .process-step::after { display: none; }
+    .chapter-nav { gap: 1rem; }
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--ink-muted);
+    font-size: 0.85rem;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* Chapter color accents */
+  .ch1 h2 { color: #1a4580; }
+  .ch2 h2 { color: #0e5440; }
+  .ch3 h2 { color: #5e1a6e; }
+  .ch4 h2 { color: #7a3800; }
+
+  .accent-bar {
+    height: 3px;
+    margin-bottom: 2rem;
+    border-radius: 2px;
+  }
+  .ch1 .accent-bar { background: var(--accent); }
+  .ch2 .accent-bar { background: var(--accent2); }
+  .ch3 .accent-bar { background: var(--accent3); }
+  .ch4 .accent-bar { background: var(--accent4); }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="eyebrow">Ian Sommerville · Chapters 1 – 4</div>
+  <h1>Software Engineering<br>Comprehensive Summary</h1>
+  <div class="subtitle">Introduction · Processes · Agile Development · Requirements Engineering</div>
+</div>
+
+<nav class="chapter-nav">
+  <a href="#ch1">Chapter 1 — Introduction</a>
+  <a href="#ch2">Chapter 2 — Processes</a>
+  <a href="#ch3">Chapter 3 — Agile</a>
+  <a href="#ch4">Chapter 4 — Requirements</a>
+</nav>
+
+<!-- CHAPTER 1 -->
+<div class="container">
+<section class="chapter-section ch1" id="ch1">
+  <div class="chapter-label">Chapter 1</div>
+  <h2>Introduction to Software Engineering</h2>
+  <p class="ch-desc">What software engineering is, why it matters, the nature of software, professional ethics, and the types of systems that require different engineering approaches.</p>
+  <div class="accent-bar"></div>
+
+  <h3>What Is Software Engineering?</h3>
+  <p>Software engineering is the <em>engineering discipline</em> concerned with all aspects of software production, from initial conception through to operation and maintenance. It is not merely writing programs — it encompasses specification, design, validation, and evolution, along with project management and the tools and methods that support those activities.</p>
+  <p>Two key ideas define it: (1) engineers make things work under real organisational and financial constraints, and (2) the field covers <em>all</em> aspects of production, not just technical coding. The goal is to deliver reliable, maintainable software on time and within budget.</p>
+
+  <div class="callout callout-blue">
+    <strong>Core definition</strong>
+    Software engineering is concerned with producing software in a professional context — software developed by teams, intended for use by others, maintained over time — not personal programs written for individual use.
+  </div>
+
+  <h3>What Is Software?</h3>
+  <p>Software is not just the executable program. It includes all associated documentation, libraries, support websites, and configuration data needed to make programs useful. A professionally developed software system often consists of multiple programs, configuration files, system documentation, and user guides.</p>
+
+  <h4>Essential Attributes of Good Software</h4>
+  <div class="def-list">
+    <div class="def-item">
+      <div class="def-term">Acceptability</div>
+      <div class="def-body">Must be understandable, usable, and compatible with the systems its intended users already work with.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Dependability & Security</div>
+      <div class="def-body">Should not cause physical or economic damage when it fails. Must be secure against malicious attack.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Efficiency</div>
+      <div class="def-body">Should not waste memory or processor cycles. Includes responsiveness, processing time, and resource utilisation.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Maintainability</div>
+      <div class="def-body">Must be written so it can evolve to meet changing customer and business needs — change is inevitable.</div>
+    </div>
+  </div>
+
+  <h3>The Four Fundamental Activities</h3>
+  <div class="process-flow">
+    <div class="process-step">
+      <div class="step-n">01</div>
+      <div class="step-name">Specification</div>
+    </div>
+    <div class="process-step">
+      <div class="step-n">02</div>
+      <div class="step-name">Development</div>
+    </div>
+    <div class="process-step">
+      <div class="step-n">03</div>
+      <div class="step-name">Validation</div>
+    </div>
+    <div class="process-step">
+      <div class="step-n">04</div>
+      <div class="step-name">Evolution</div>
+    </div>
+  </div>
+  <p>These four activities are common to all software processes regardless of the development approach used. The order and formality with which they are performed varies considerably between process models.</p>
+
+  <h3>Why Software Engineering Matters</h3>
+  <p>Society relies on software systems for infrastructure, commerce, healthcare, and communication. Failures are costly: roughly 60% of software costs are development, 40% are testing, and for custom software, evolution costs often exceed development costs entirely. Using software engineering methods rather than ad hoc programming is, in the long run, cheaper and produces more reliable systems.</p>
+  <p>The two main causes of software failures are: (1) increasing system complexity outpacing our ability to manage it, and (2) failure to apply sound software engineering methods — many companies drift into software development without adopting professional practices.</p>
+
+  <h3>Types of Software Systems</h3>
+  <p>No single set of techniques is appropriate for all software. Different systems have fundamentally different characteristics and require different engineering approaches:</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-number">Type 01</div>
+      <div class="card-title">Stand-alone Applications</div>
+      <p>Run on personal computers or mobile devices with all required functionality built in. CAD programs, office applications, productivity apps.</p>
+    </div>
+    <div class="card">
+      <div class="card-number">Type 02</div>
+      <div class="card-title">Interactive Transaction-Based</div>
+      <p>Execute on remote computers and are accessed through browsers. E-commerce, banking, cloud services. Incorporate large data stores.</p>
+    </div>
+    <div class="card">
+      <div class="card-number">Type 03</div>
+      <div class="card-title">Embedded Control Systems</div>
+      <p>Control hardware devices. Antilock braking, insulin pumps, microwave ovens. Numerically the most common type of software system.</p>
+    </div>
+    <div class="card">
+      <div class="card-number">Type 04</div>
+      <div class="card-title">Batch Processing Systems</div>
+      <p>Process large volumes of data in batches. Phone billing, salary payment. No real-time user interaction required.</p>
+    </div>
+    <div class="card">
+      <div class="card-number">Type 05</div>
+      <div class="card-title">Entertainment Systems</div>
+      <p>Games on consoles and devices. Quality of user experience is the defining characteristic.</p>
+    </div>
+    <div class="card">
+      <div class="card-number">Type 06</div>
+      <div class="card-title">Systems of Systems</div>
+      <p>Enterprise systems composed of multiple sub-systems, some generic products, some custom-built. ERP systems are the canonical example.</p>
+    </div>
+  </div>
+
+  <h3>Generic vs. Custom Products</h3>
+  <div class="two-col">
+    <div class="callout callout-blue">
+      <strong>Generic Products</strong>
+      Stand-alone systems produced for an open market (apps, databases, word processors). The <em>developer</em> controls the specification — if problems arise, the developer decides what changes to make.
+    </div>
+    <div class="callout callout-green">
+      <strong>Custom (Bespoke) Products</strong>
+      Systems commissioned by and developed for a specific customer. The <em>customer</em> controls the specification. Developers must work to that spec. The distinction is increasingly blurred as generic platforms are customised.
+    </div>
+  </div>
+
+  <h3>Key Challenges Facing Software Engineering</h3>
+  <div class="pill-list">
+    <span class="pill pill-blue">Heterogeneity</span>
+    <span class="pill pill-green">Rapid Business Change</span>
+    <span class="pill pill-purple">Security & Trust</span>
+    <span class="pill pill-amber">Scale (from tiny embedded to cloud-scale)</span>
+  </div>
+
+  <h3>Software Engineering Ethics</h3>
+  <p>Software engineers have responsibilities that extend beyond technical skill. They operate within a social and legal framework. Professional societies publish codes of conduct — the ACM/IEEE Code of Ethics and Professional Practice sets out eight principles:</p>
+  <div class="def-list">
+    <div class="def-item"><div class="def-term">1. Public</div><div class="def-body">Act consistently with the public interest.</div></div>
+    <div class="def-item"><div class="def-term">2. Client & Employer</div><div class="def-body">Act in the best interests of client and employer, consistent with the public interest.</div></div>
+    <div class="def-item"><div class="def-term">3. Product</div><div class="def-body">Ensure products meet the highest professional standards possible.</div></div>
+    <div class="def-item"><div class="def-term">4. Judgment</div><div class="def-body">Maintain integrity and independence in professional judgment.</div></div>
+    <div class="def-item"><div class="def-term">5. Management</div><div class="def-body">Promote an ethical approach to managing software development.</div></div>
+    <div class="def-item"><div class="def-term">6. Profession</div><div class="def-body">Advance the integrity and reputation of the profession.</div></div>
+    <div class="def-item"><div class="def-term">7. Colleagues</div><div class="def-body">Be fair to and supportive of colleagues.</div></div>
+    <div class="def-item"><div class="def-term">8. Self</div><div class="def-body">Participate in lifelong learning and promote ethical practice.</div></div>
+  </div>
+  <p>Specific ethical concerns include: <strong>confidentiality</strong> (respect employer/client secrets), <strong>competence</strong> (don't misrepresent your skills), <strong>intellectual property rights</strong> (protect employers' IP), and <strong>computer misuse</strong> (don't use technical skills dishonestly).</p>
+  <p>Difficult dilemmas arise when employers act unethically — for instance, falsifying safety validation records under time pressure. Sommerville argues that the appropriate response depends on the potential damage, who is affected, and the extent of the risk.</p>
+
+  <div class="key-points">
+    <h3>Key Points — Chapter 1</h3>
+    <ul>
+      <li>Software engineering is an engineering discipline covering all aspects of software production.</li>
+      <li>Software is not just programs — it includes all documentation, libraries, and configuration data.</li>
+      <li>The four fundamental activities are: specification, development, validation, and evolution.</li>
+      <li>Different types of systems require different engineering techniques — no universal method exists.</li>
+      <li>Software engineers have ethical responsibilities to the profession and to society.</li>
+      <li>Professional codes of conduct (ACM/IEEE) set out standards of expected behaviour.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CHAPTER 2 -->
+<section class="chapter-section ch2" id="ch2">
+  <div class="chapter-label">Chapter 2</div>
+  <h2>Software Processes</h2>
+  <p class="ch-desc">The models and activities that organise how software is produced — waterfall, incremental development, and reuse-oriented approaches — plus strategies for coping with change and improving processes over time.</p>
+  <div class="accent-bar"></div>
+
+  <h3>What Is a Software Process?</h3>
+  <p>A software process is a set of related activities that leads to the production of a software system. There is no universally applicable process — the right one depends on the type of software, the customer's requirements, and the team's skills. A <strong>process model</strong> (also called an SDLC model) is a simplified, abstract representation of a process that describes its structure from a particular perspective.</p>
+
+  <div class="callout callout-green">
+    <strong>Plan-driven vs. Agile</strong>
+    In plan-driven processes, all activities are planned in advance and progress is measured against that plan. In agile processes, planning is incremental and continuous. Most large real-world projects find a balance between these two extremes.
+  </div>
+
+  <h3>The Three General Process Models</h3>
+
+  <h4>1. The Waterfall Model</h4>
+  <p>The oldest published model, derived from engineering processes for large military systems. It represents development as a sequence of discrete, non-overlapping phases. Each phase must be signed off before the next begins. It is a <em>plan-driven</em> process.</p>
+
+  <div class="process-flow">
+    <div class="process-step"><div class="step-n">1</div><div class="step-name">Requirements definition</div></div>
+    <div class="process-step"><div class="step-n">2</div><div class="step-name">System & software design</div></div>
+    <div class="process-step"><div class="step-n">3</div><div class="step-name">Implementation & unit testing</div></div>
+    <div class="process-step"><div class="step-n">4</div><div class="step-name">Integration & system testing</div></div>
+    <div class="process-step"><div class="step-n">5</div><div class="step-name">Operation & maintenance</div></div>
+  </div>
+
+  <p>The waterfall model is best for: <strong>embedded systems</strong> (where hardware decisions must be fixed early), <strong>critical systems</strong> (where extensive safety analysis is needed before implementation), and <strong>large systems</strong> developed by multiple partner companies that need complete specifications to coordinate independent development.</p>
+
+  <div class="callout callout-red">
+    <strong>Waterfall Limitations</strong>
+    In practice, software development is never strictly linear — there is always feedback between phases. Premature freezing of specifications leads to poor systems. It is poorly suited to projects where requirements change during development.
+  </div>
+
+  <h4>2. Incremental Development</h4>
+  <p>Specification, development, and validation activities are interleaved. The system is developed as a series of <em>increments</em>, each adding functionality. This is now the most common approach for application systems and software products. It can be plan-driven (increments defined in advance) or agile (early increments defined, later ones depend on progress).</p>
+
+  <div class="two-col">
+    <div class="callout callout-green">
+      <strong>Advantages</strong>
+      Lower cost of changing requirements; easier to get customer feedback; early delivery of useful working software; most-tested functionality is the most critical.
+    </div>
+    <div class="callout callout-red">
+      <strong>Disadvantages</strong>
+      Process is less visible to managers; system structure tends to degrade as increments are added without refactoring; becomes difficult for very large systems requiring multiple geographically dispersed teams.
+    </div>
+  </div>
+
+  <h4>3. Integration and Configuration (Reuse-Oriented)</h4>
+  <p>Relies on reusable software components — stand-alone application systems that can be configured, collections of objects in component packages, or web services. The development process focuses on configuring and integrating existing components rather than building from scratch. Reduces cost and risk, speeds delivery, but requires requirements compromises and means some control over system evolution is lost.</p>
+
+  <h3>Process Activities in Detail</h3>
+
+  <h4>Requirements Engineering</h4>
+  <p>The process of understanding, defining, and documenting what the system must do and the constraints on its operation. It is critical — mistakes here propagate into design and implementation. It includes: (1) elicitation and analysis, (2) specification, and (3) validation. In agile, requirements are integrated with development rather than being a distinct prior phase.</p>
+
+  <h4>Software Design and Implementation</h4>
+  <p>Transforming a requirements specification into an executable system. Key design activities include:</p>
+  <div class="def-list">
+    <div class="def-item"><div class="def-term">Architectural design</div><div class="def-body">Identifying the overall structure: principal components, their relationships, and distribution.</div></div>
+    <div class="def-item"><div class="def-term">Database design</div><div class="def-body">Designing data structures and how they are represented — either reusing an existing database or creating a new one.</div></div>
+    <div class="def-item"><div class="def-term">Interface design</div><div class="def-body">Defining unambiguous interfaces between components so they can be separately developed.</div></div>
+    <div class="def-item"><div class="def-term">Component selection and design</div><div class="def-body">Searching for reusable components; designing new ones when none are available.</div></div>
+  </div>
+
+  <h4>Software Validation (V&V)</h4>
+  <p>Verifying that the system conforms to its specification and meets customer expectations. The primary technique is program testing. Testing should always be incremental and staged:</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-number">Stage 1</div>
+      <div class="card-title">Component Testing</div>
+      <p>Individual components are tested in isolation by the developers who built them. Automated tools like JUnit are typically used.</p>
+    </div>
+    <div class="card">
+      <div class="card-number">Stage 2</div>
+      <div class="card-title">System Testing</div>
+      <p>Components are integrated and tested as a complete system. Finds errors from unexpected interactions between components.</p>
+    </div>
+    <div class="card">
+      <div class="card-number">Stage 3</div>
+      <div class="card-title">Customer Testing</div>
+      <p>The system is tested using the customer's real data. Reveals requirements errors and omissions that simulated data would miss. Beta testing is a variant for products.</p>
+    </div>
+  </div>
+
+  <h4>Software Evolution</h4>
+  <p>Development and maintenance are increasingly seen as a continuum rather than separate activities. Systems are continually changed over their lifetime in response to new requirements. The flexibility of software makes this feasible in a way not possible for hardware.</p>
+
+  <h3>Coping With Change</h3>
+  <p>Change adds costs because completed work must be redone (rework). Two strategies address this:</p>
+  <div class="two-col">
+    <div class="callout callout-blue">
+      <strong>Change Anticipation</strong>
+      Build activities into the process that predict possible changes before significant rework is needed — e.g., early prototyping to test requirements with users before full development begins.
+    </div>
+    <div class="callout callout-purple">
+      <strong>Change Tolerance</strong>
+      Design the process and software so changes can be made easily — typically through incremental development where proposed changes can be implemented in not-yet-developed increments.
+    </div>
+  </div>
+
+  <h4>Prototyping</h4>
+  <p>An early version of the system developed quickly to demonstrate concepts, try out design options, and learn more about the problem. Used in requirements engineering to validate requirements and in system design to explore solutions. Must have explicit objectives from the start. Rapid iterative development is essential to control costs. Non-functional requirements such as performance and memory usage are normally relaxed in a prototype.</p>
+
+  <h4>Incremental Delivery</h4>
+  <p>Developed increments are actually delivered to the customer for use in their real working environment. Customers use early increments as prototypes, gain value immediately, and provide realistic feedback. Problems arise when replacing an existing system (users want full functionality from day one) or when common baseline facilities are hard to identify until late in the process.</p>
+
+  <h3>Process Improvement</h3>
+  <p>Understanding and changing existing processes to increase product quality, reduce costs, or accelerate delivery. Two approaches exist: the <strong>process maturity approach</strong> (formal, plan-driven, focuses on measurement and good practice) and the <strong>agile approach</strong> (focuses on reducing overheads and responding to change). The improvement cycle is: measure → analyse → change → repeat.</p>
+
+  <p>The SEI Capability Maturity Model defines five levels: <strong>Initial → Managed → Defined → Quantitatively Managed → Optimising</strong>. This model had a major impact on the software industry but involves too much overhead for small companies and is difficult to apply alongside agile methods.</p>
+
+  <div class="key-points">
+    <h3>Key Points — Chapter 2</h3>
+    <ul>
+      <li>A software process is a set of activities leading to the production of a software system.</li>
+      <li>Waterfall, incremental development, and reuse-oriented models are the three general models.</li>
+      <li>Waterfall is best for stable requirements; incremental development is best when requirements evolve.</li>
+      <li>Requirements engineering produces a specification that is the starting point for design.</li>
+      <li>Testing should always be incremental and staged: component → system → customer.</li>
+      <li>Change anticipation and change tolerance are the two strategies for managing requirements change.</li>
+      <li>Process improvement is a continuous cycle of measurement, analysis, and change.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CHAPTER 3 -->
+<section class="chapter-section ch3" id="ch3">
+  <div class="chapter-label">Chapter 3</div>
+  <h2>Agile Software Development</h2>
+  <p class="ch-desc">The philosophy, principles, and practices of agile methods — especially Extreme Programming and Scrum — along with the challenges of scaling agile to large organisations and distributed teams.</p>
+  <div class="accent-bar"></div>
+
+  <h3>Why Agile?</h3>
+  <p>Businesses operate in rapidly changing environments. They need new software quickly and may accept lower quality or incomplete requirements to achieve fast deployment. For these environments, conventional plan-driven processes are too slow — by the time software is delivered, the original business need may have changed entirely.</p>
+  <p>Agile methods emerged in the late 1990s to address this. Key names include <strong>Extreme Programming (XP)</strong>, <strong>Scrum</strong>, and <strong>DSDM</strong>. All share common characteristics: specification, design, and implementation are interleaved; systems are developed in small, frequent increments; customers are involved continuously; documentation is minimised in favour of working software.</p>
+
+  <h3>The Agile Manifesto (2001)</h3>
+  <blockquote>
+    "We value: <strong>Individuals and interactions</strong> over processes and tools. <strong>Working software</strong> over comprehensive documentation. <strong>Customer collaboration</strong> over contract negotiation. <strong>Responding to change</strong> over following a plan."
+  </blockquote>
+  <p>The manifesto explicitly acknowledges value in the right-hand items — it is about priority, not the complete rejection of planning, documentation, or contracts.</p>
+
+  <h4>The Five Principles of Agile Methods</h4>
+  <div class="def-list">
+    <div class="def-item"><div class="def-term">Customer Involvement</div><div class="def-body">Customers are closely involved throughout, providing and prioritising requirements and evaluating iterations.</div></div>
+    <div class="def-item"><div class="def-term">Embrace Change</div><div class="def-body">Expect requirements to change; design the system to accommodate changes easily.</div></div>
+    <div class="def-item"><div class="def-term">Incremental Delivery</div><div class="def-body">Software is developed in increments; the customer specifies what goes into each increment.</div></div>
+    <div class="def-item"><div class="def-term">Maintain Simplicity</div><div class="def-body">Focus on simplicity in the software being developed and in the development process itself.</div></div>
+    <div class="def-item"><div class="def-term">People, Not Process</div><div class="def-body">Recognise and exploit the skills of the development team; leave them to develop their own ways of working.</div></div>
+  </div>
+
+  <h3>Extreme Programming (XP) Practices</h3>
+  <p>XP pushed recognised good practices to extreme levels. It introduced several practices now central to agile development:</p>
+
+  <h4>User Stories</h4>
+  <p>Requirements are expressed as scenarios of use ("stories"), written on cards. Each story describes a task a user needs to accomplish. The development team breaks stories into <em>task cards</em> and estimates effort. Stories are prioritised by the customer for implementation in the next release (typically every 2 weeks). Stories are more relatable to stakeholders than formal requirements documents, but can be incomplete and miss underlying assumptions.</p>
+
+  <h4>Test-First Development (TDD)</h4>
+  <p>Tests are written <em>before</em> the code they will test. This means: tests define the interface and specify the required behaviour; ambiguities and omissions in the specification are forced to surface before implementation; and there is always an automated test suite that can be run immediately after any change. An automated test framework (e.g., JUnit) is essential. Key features: test-first development; incremental test development from scenarios; user involvement in test development; use of automated testing frameworks.</p>
+
+  <div class="callout callout-purple">
+    <strong>Why TDD Matters</strong>
+    "Writing tests implicitly defines both an interface and a specification of behaviour for the functionality being developed. Problems of requirements and interface misunderstandings are reduced." — Sommerville. TDD also eliminates "test-lag" where implementation gets ahead of testing and tests are skipped to maintain schedule.
+  </div>
+
+  <h4>Refactoring</h4>
+  <p>Developers continuously improve the structure of the code without changing its external behaviour. This counters the natural tendency of incremental development to degrade software structure as changes accumulate. Examples: reorganising class hierarchies to remove duplicate code, renaming attributes and methods for clarity, replacing repeated code sections with library method calls. XP rejects the traditional principle of "designing for change" — it argues that anticipated changes often don't materialise, so refactoring continuously is more effective.</p>
+
+  <h4>Pair Programming</h4>
+  <p>Programmers work in pairs at the same computer. Pairs rotate dynamically so all team members work with each other. Benefits: supports collective ownership and responsibility; acts as an informal code review (each line is seen by at least two people); encourages refactoring. Effectiveness studies are mixed — comparable productivity to two individual programmers in some studies, measurable loss in others. However, knowledge sharing is valuable regardless: it reduces project risk when team members leave.</p>
+
+  <h4>Other Key XP Practices</h4>
+  <table class="summary-table">
+    <thead><tr><th>Practice</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Collective Ownership</td><td>Any developer can change any code — no islands of expertise develop. Everyone is responsible for all the code.</td></tr>
+      <tr><td>Continuous Integration</td><td>When a task is complete, it is integrated into the whole system immediately. All unit tests must pass after every integration.</td></tr>
+      <tr><td>Small Releases</td><td>The minimal useful set of functionality is developed first. Releases are frequent and incrementally add functionality.</td></tr>
+      <tr><td>Simple Design</td><td>Enough design to meet current requirements and no more. No over-engineering for anticipated future needs.</td></tr>
+      <tr><td>Sustainable Pace</td><td>Large amounts of overtime are not acceptable — they reduce code quality and medium-term productivity.</td></tr>
+      <tr><td>On-site Customer</td><td>A customer representative is available full time as part of the development team.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Scrum — Agile Project Management</h3>
+  <p>Scrum provides a framework for organising agile projects and giving external visibility into progress. It was developed to address the conflict between agile informality and business requirements for management visibility. Scrum does not mandate specific development practices like pair programming or TDD — it focuses on the <em>management</em> of agile work.</p>
+
+  <h4>Core Scrum Terminology</h4>
+  <div class="def-list">
+    <div class="def-item"><div class="def-term">Product Backlog</div><div class="def-body">A prioritised list of everything the Scrum team must tackle — features, requirements, user stories, engineering improvements. The Product Owner maintains and prioritises it continuously.</div></div>
+    <div class="def-item"><div class="def-term">Sprint</div><div class="def-body">A fixed-length development iteration, typically 2–4 weeks. Never extended to accommodate unfinished work. Output is a potentially shippable product increment.</div></div>
+    <div class="def-item"><div class="def-term">Sprint Backlog</div><div class="def-body">The subset of the product backlog selected for the current sprint, after the team estimates velocity from previous sprints.</div></div>
+    <div class="def-item"><div class="def-term">Scrum (Daily)</div><div class="def-body">A short daily meeting where all team members report progress since yesterday, problems arising, and plans for today. No top-down direction — everyone participates in short-term planning.</div></div>
+    <div class="def-item"><div class="def-term">ScrumMaster</div><div class="def-body">Responsible for ensuring the Scrum process is followed and guiding the team. Interfaces with the rest of the company and shields the team from outside interference. Not formally a project manager, though often acts as one.</div></div>
+    <div class="def-item"><div class="def-term">Product Owner</div><div class="def-body">Identifies and prioritises product features and requirements. Continuously reviews the backlog to ensure the project meets critical business needs. May be the customer or a product manager.</div></div>
+    <div class="def-item"><div class="def-term">Velocity</div><div class="def-body">An estimate of how much backlog the team can cover in a single sprint, used to plan future sprints and measure improvement.</div></div>
+  </div>
+
+  <h4>The Sprint Cycle</h4>
+  <p>Product Backlog → Sprint Planning (select items, estimate using velocity) → Sprint (2–4 weeks of development + daily Scrums) → Sprint Review (process improvement + product feedback) → next sprint planning. The review has two purposes: reflecting on how the process could be improved, and providing input to the next product backlog prioritisation.</p>
+
+  <h3>Practical Limitations of Agile Methods</h3>
+  <p>Agile methods can be problematic for larger, contract-based development:</p>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">Contractual Issues</div>
+      <p>Contracts typically require a fixed requirements document. Agile's interleaved requirements and code development makes this difficult — time-and-materials contracts are needed, which can lead to disputes.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Maintenance Problems</div>
+      <p>Lack of documentation makes maintaining custom systems harder. The most important document for maintenance is the requirements document — agile methods often don't produce one. Team continuity is critical but hard to maintain.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Distributed Teams</div>
+      <p>Agile was designed for small co-located teams. Much software development now involves globally distributed teams, where informal daily communication is not possible.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Customer Involvement</div>
+      <p>Requires a customer representative available full time. In practice, customer representatives have other demands and cannot always participate continuously.</p>
+    </div>
+  </div>
+
+  <h3>Scaling Agile Methods</h3>
+  <p>For large systems, pure agile approaches cannot work unchanged. Large systems are systems-of-systems, involve brownfield development (interaction with existing systems), require significant system configuration, are subject to external regulations, have long procurement cycles, and have diverse stakeholder communities.</p>
+
+  <p>When scaling, several plan-based elements must be added:</p>
+  <div class="pill-list">
+    <span class="pill pill-purple">Initial upfront requirements (not detailed)</span>
+    <span class="pill pill-purple">Multiple product owners / customer reps</span>
+    <span class="pill pill-purple">More architectural documentation</span>
+    <span class="pill pill-purple">Cross-team communication mechanisms</span>
+    <span class="pill pill-purple">Frequent (not continuous) system builds</span>
+    <span class="pill pill-purple">Configuration management tools</span>
+  </div>
+
+  <p><strong>Scaled Scrum</strong> addresses large teams through: role replication (each sub-team has its own Product Owner and ScrumMaster), product architects collaborating on overall architecture, aligned release dates, and a <em>Scrum of Scrums</em> — a daily meeting of representatives from each team to discuss progress, problems, and coordination.</p>
+
+  <p>IBM's Agility at Scale Model describes a staged progression: core agile development → disciplined agile delivery (adapting practices to organisational constraints) → agility at scale (handling complexity from distribution, legacy systems, regulatory compliance).</p>
+
+  <div class="key-points">
+    <h3>Key Points — Chapter 3</h3>
+    <ul>
+      <li>Agile methods focus on rapid delivery of working software through incremental development and continuous customer involvement.</li>
+      <li>The Agile Manifesto prioritises individuals, working software, customer collaboration, and responding to change.</li>
+      <li>Key XP practices: user stories, TDD, refactoring, pair programming, collective ownership, continuous integration.</li>
+      <li>Scrum provides a management framework: product backlog, sprints, daily scrums, sprint reviews.</li>
+      <li>Agile methods work best for small co-located teams building new systems with engaged customers.</li>
+      <li>Scaling agile requires integrating plan-based practices: upfront architecture, more documentation, cross-team coordination.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CHAPTER 4 -->
+<section class="chapter-section ch4" id="ch4">
+  <div class="chapter-label">Chapter 4</div>
+  <h2>Requirements Engineering</h2>
+  <p class="ch-desc">Discovering, documenting, and validating what a software system must do — the processes, techniques, and artefacts of requirements elicitation, specification, validation, and change management.</p>
+  <div class="accent-bar"></div>
+
+  <h3>What Are Requirements?</h3>
+  <p>Requirements are descriptions of the services a system should provide and the constraints on its operation. Requirements engineering (RE) is the process of finding, analysing, documenting, and checking these services and constraints. Requirements exist at two levels of abstraction:</p>
+  <div class="two-col">
+    <div class="callout callout-amber">
+      <strong>User Requirements</strong>
+      High-level, abstract statements in natural language (+ diagrams) of what services the system should provide and the constraints under which it must operate. Written for managers and non-technical stakeholders.
+    </div>
+    <div class="callout callout-blue">
+      <strong>System Requirements</strong>
+      Detailed descriptions of the software system's functions, services, and operational constraints. Used by system architects, developers, and testers. May form part of the development contract.
+    </div>
+  </div>
+
+  <h3>Functional vs. Non-Functional Requirements</h3>
+
+  <h4>Functional Requirements</h4>
+  <p>Statements of what the system should do — the services it provides, how it reacts to inputs, and how it behaves in particular situations. They should be both <em>complete</em> (all required services defined) and <em>consistent</em> (no contradictions). In practice, completeness and consistency are almost impossible to achieve for large systems because different stakeholders have different — often conflicting — needs, and inconsistencies are often only discovered during development.</p>
+
+  <h4>Non-Functional Requirements (NFRs)</h4>
+  <p>Constraints on the services or functions, rather than descriptions of the services themselves. Often apply to the system as a whole. They are frequently <em>more critical</em> than functional requirements — failing to meet an NFR can make the entire system unusable. NFRs arise from: product characteristics, organisational policies, or external sources.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-number">Product</div>
+      <div class="card-title">Product Requirements</div>
+      <p>Specify runtime behaviour: performance, reliability, security, usability, memory use, response time.</p>
+    </div>
+    <div class="card">
+      <div class="card-number">Organisational</div>
+      <div class="card-title">Organisational Requirements</div>
+      <p>Derived from policies and procedures: operational process requirements, development process standards (programming language, tools), environmental requirements.</p>
+    </div>
+    <div class="card">
+      <div class="card-number">External</div>
+      <div class="card-title">External Requirements</div>
+      <p>Derived from factors outside the system: regulatory requirements, legislation (privacy laws), ethical requirements from users and the public.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>Making NFRs Testable</strong>
+    NFRs are often written as vague goals (e.g., "the system should be easy to use"). These are unverifiable. Good NFRs should be written quantitatively: "Medical staff shall be able to use all system functions after two hours of training. After this training, average errors shall not exceed two per hour of system use." This can be objectively tested.
+  </div>
+
+  <h3>The Requirements Engineering Process</h3>
+  <p>RE is an iterative spiral of interleaved activities rather than a sequential process. The amount of effort per activity shifts across iterations — early iterations focus on high-level business and user requirements; later iterations add detail and address non-functional requirements. The spiral output is a system requirements document.</p>
+
+  <div class="process-flow">
+    <div class="process-step"><div class="step-n">1</div><div class="step-name">Elicitation & Analysis</div></div>
+    <div class="process-step"><div class="step-n">2</div><div class="step-name">Specification</div></div>
+    <div class="process-step"><div class="step-n">3</div><div class="step-name">Validation</div></div>
+    <div class="process-step"><div class="step-n">4</div><div class="step-name">Management</div></div>
+  </div>
+
+  <h3>Requirements Elicitation</h3>
+  <p>The process of understanding what stakeholders do and how a new system might support their work. Elicitation is difficult because: stakeholders often don't know what they want; they express requirements in domain-specific jargon; different stakeholders have conflicting needs; political factors influence requirements; and the business environment changes during analysis.</p>
+
+  <h4>The Elicitation and Analysis Process</h4>
+  <div class="def-list">
+    <div class="def-item"><div class="def-term">1. Requirements Discovery</div><div class="def-body">Interacting with stakeholders to discover their requirements. Domain requirements from documentation are also gathered here.</div></div>
+    <div class="def-item"><div class="def-term">2. Classification & Organisation</div><div class="def-body">Grouping related requirements into coherent clusters to make sense of the unstructured collection gathered in discovery.</div></div>
+    <div class="def-item"><div class="def-term">3. Prioritisation & Negotiation</div><div class="def-body">When multiple stakeholders are involved, requirements will conflict. This activity finds and resolves conflicts through negotiation and compromise.</div></div>
+    <div class="def-item"><div class="def-term">4. Documentation</div><div class="def-body">Requirements are documented — from informal whiteboards and wikis to draft requirements documents — as input to the next spiral iteration.</div></div>
+  </div>
+
+  <h4>Interviewing</h4>
+  <p>The most fundamental elicitation technique. Can be <strong>closed</strong> (predefined questions, controlled answers) or <strong>open</strong> (no predefined agenda, explores issues broadly). In practice, interviews are a mixture of both. Good interviewers are open-minded and use "springboard questions" or prototype systems to prompt discussion — "tell me what you want" rarely produces useful information.</p>
+  <p>Limitations: interviews are poor at eliciting domain knowledge (jargon, implicit assumptions) and ineffective at uncovering organisational power structures and politics, which stakeholders are reluctant to reveal to strangers.</p>
+
+  <h4>Ethnography</h4>
+  <p>An observational technique where the analyst immerses themselves in the working environment, observing actual work rather than relying on stakeholders to describe it. Ethnography discovers two types of requirements that interviews often miss:</p>
+  <div class="two-col">
+    <div class="callout callout-green">
+      <strong>Actual Work Practice</strong>
+      How people really work, as opposed to how formal process definitions say they should work. People never follow formal processes exactly — they develop workarounds and shortcuts.
+    </div>
+    <div class="callout callout-green">
+      <strong>Cooperation and Awareness</strong>
+      Requirements derived from how people coordinate with each other. A team may self-organise in ways that are invisible in interviews because they don't see it as "part of their work."
+    </div>
+  </div>
+  <p>Ethnography can be combined with prototyping: the prototype focuses the ethnographic study by identifying specific questions to investigate; the ethnographic findings inform prototype refinement. Limitation: ethnography is poor at discovering broader organisational requirements or suggesting innovations.</p>
+
+  <h4>Stories and Scenarios</h4>
+  <p><strong>Stories</strong> are high-level narrative descriptions of system use, written in natural language. They facilitate discussion and help get information from a wider community (e.g., via wikis). <strong>Scenarios</strong> are more detailed and structured descriptions of specific interaction sessions, including: pre-conditions, normal flow, error handling, concurrent activities, and system state at completion. Together, they make abstract requirements concrete and relatable.</p>
+
+  <h3>Requirements Specification</h3>
+  <p>Writing down user and system requirements in a requirements document. Ideally requirements should be clear, unambiguous, easy to understand, complete, and consistent — in practice this is almost impossible to achieve.</p>
+
+  <h4>Natural Language Specification</h4>
+  <p>The most widely used approach — expressive and intuitive but potentially vague. Guidelines for good natural language requirements:</p>
+  <div class="pill-list">
+    <span class="pill pill-amber">Use a standard format for every requirement</span>
+    <span class="pill pill-amber">Use "shall" for mandatory, "should" for desirable</span>
+    <span class="pill pill-amber">Use text highlighting for key parts</span>
+    <span class="pill pill-amber">Avoid technical software jargon</span>
+    <span class="pill pill-amber">Include a rationale for each requirement</span>
+  </div>
+
+  <h4>Structured Natural Language</h4>
+  <p>Requirements written in a standard template/form rather than free text. Includes fields for: function description, inputs (and their sources), outputs (and their destinations), required information from other system parts, action to take, pre- and post-conditions, and side effects. This removes some ambiguity and imposes useful discipline while retaining readability.</p>
+
+  <h4>Use Cases</h4>
+  <p>Graphical models using a use case diagram (actors as stick figures, interactions as ellipses, lines connecting them) supplemented by structured textual descriptions. Each use case identifies an individual interaction between the system and its users or other systems. Sommerville notes that use cases are often too fine-grained to be useful in requirements engineering discussions with stakeholders — they are more helpful during systems design. Use cases become the Unified Modelling Language (UML) standard tool for documenting interactions.</p>
+
+  <h4>The Software Requirements Document (SRS)</h4>
+  <p>The official statement of what system developers should implement. Has diverse users: client managers, system end-users, client engineers, contractor managers, system architects, developers, test engineers, and maintenance engineers. The level of detail depends on the type of system and development process.</p>
+
+  <p>The IEEE recommended structure for a requirements document includes:</p>
+  <div class="def-list">
+    <div class="def-item"><div class="def-term">Preface</div><div class="def-body">Expected readership and version history with rationale for each version.</div></div>
+    <div class="def-item"><div class="def-term">Introduction</div><div class="def-body">The need for the system, how it fits strategic objectives, how it works with other systems.</div></div>
+    <div class="def-item"><div class="def-term">Glossary</div><div class="def-body">Defines technical terms without assuming reader expertise.</div></div>
+    <div class="def-item"><div class="def-term">User Requirements Definition</div><div class="def-body">Services provided for users, in natural language with diagrams. Also includes non-functional requirements.</div></div>
+    <div class="def-item"><div class="def-term">System Architecture</div><div class="def-body">High-level overview of the anticipated system architecture, showing distribution of functions across modules.</div></div>
+    <div class="def-item"><div class="def-term">System Requirements Specification</div><div class="def-body">Detailed functional and non-functional requirements; interfaces to other systems.</div></div>
+    <div class="def-item"><div class="def-term">System Models</div><div class="def-body">Graphical models — object models, data-flow models, semantic data models — showing relationships.</div></div>
+    <div class="def-item"><div class="def-term">System Evolution</div><div class="def-body">Fundamental assumptions and anticipated changes — helps designers avoid decisions that restrict future changes.</div></div>
+    <div class="def-item"><div class="def-term">Appendices + Index</div><div class="def-body">Hardware requirements, database descriptions, alphabetic index, index of diagrams and functions.</div></div>
+  </div>
+
+  <h3>Requirements Validation</h3>
+  <p>Checking that requirements define the system the customer actually wants. Requirements problems discovered after delivery are far more expensive to fix than those found here — a requirements change typically requires redesign, re-implementation, and re-testing. Five types of checks are required:</p>
+  <div class="card-grid">
+    <div class="card"><div class="card-title">Validity</div><p>Do requirements reflect the real, current needs of system users?</p></div>
+    <div class="card"><div class="card-title">Consistency</div><p>Are requirements free of contradictions? No conflicting constraints or duplicate descriptions of the same function?</p></div>
+    <div class="card"><div class="card-title">Completeness</div><p>Do requirements define all functions and constraints the user intends?</p></div>
+    <div class="card"><div class="card-title">Realism</div><p>Can requirements be implemented within the proposed budget and schedule using current technology?</p></div>
+    <div class="card"><div class="card-title">Verifiability</div><p>Can a set of tests be written that demonstrates the delivered system meets each requirement?</p></div>
+  </div>
+
+  <h4>Validation Techniques</h4>
+  <div class="def-list">
+    <div class="def-item"><div class="def-term">Requirements Reviews</div><div class="def-body">A team of reviewers — from both customer and developer side — systematically analyses the requirements document to check for errors and inconsistencies. Both parties must then negotiate on how to resolve identified problems.</div></div>
+    <div class="def-item"><div class="def-term">Prototyping</div><div class="def-body">An executable model is developed and used with end-users and customers to see if it meets their needs. Stakeholders experiment and provide feedback on requirements changes.</div></div>
+    <div class="def-item"><div class="def-term">Test-Case Generation</div><div class="def-body">Requirements should be testable. Designing tests during validation often reveals requirements problems — if a test is difficult or impossible to design, the requirement is probably ambiguous or infeasible. This is an integral part of test-driven development.</div></div>
+  </div>
+
+  <h3>Requirements Change Management</h3>
+  <p>Requirements always change. Reasons include: evolving stakeholder understanding; changes to the business and technical environment after installation; different priorities among multiple stakeholders; new legislation; and legacy system constraints. A formal change management process ensures all proposed changes are treated consistently.</p>
+
+  <h4>Requirements Management Planning</h4>
+  <p>Decisions required before managing change: (1) requirements identification (unique IDs for cross-referencing and traceability); (2) the change management process (how impact and cost are assessed); (3) traceability policies (what relationships between requirements and design must be recorded); and (4) tool support (from shared spreadsheets for small projects to specialist tools like IBM Rational DOORS for large ones).</p>
+
+  <h4>The Three-Stage Change Management Process</h4>
+  <div class="process-flow">
+    <div class="process-step"><div class="step-n">1</div><div class="step-name">Problem analysis &amp; change specification</div></div>
+    <div class="process-step"><div class="step-n">2</div><div class="step-name">Change analysis &amp; costing</div></div>
+    <div class="process-step"><div class="step-n">3</div><div class="step-name">Change implementation</div></div>
+  </div>
+
+  <p>In agile development, instead of a formal change management process, the customer must prioritise proposed changes and decide what planned features to drop from the next iteration in exchange. Sommerville cautions that users are not always the best people to make cost-effectiveness decisions about changes — an independent authority balancing all stakeholder needs is often preferable.</p>
+
+  <div class="callout callout-red">
+    <strong>Emergency Changes Warning</strong>
+    When emergency changes must be made before formal approval, there is always temptation to change the system first and update the requirements document later. This almost inevitably causes the specification and implementation to diverge. The requirements document must be updated as soon as possible after any emergency change.
+  </div>
+
+  <div class="key-points">
+    <h3>Key Points — Chapter 4</h3>
+    <ul>
+      <li>Requirements describe what a system should do and the constraints on its operation.</li>
+      <li>User requirements are high-level and natural-language; system requirements are detailed and precise.</li>
+      <li>Functional requirements describe services; non-functional requirements constrain the whole system.</li>
+      <li>NFRs are often more critical than functional requirements — failing them can make the system unusable.</li>
+      <li>Elicitation uses interviews and ethnography; scenarios and stories make requirements concrete.</li>
+      <li>The SRS is an official document with diverse audiences — level of detail depends on the project type.</li>
+      <li>Validation checks: validity, consistency, completeness, realism, verifiability.</li>
+      <li>Requirements always change — formal change management with unique IDs and traceability is essential.</li>
+    </ul>
+  </div>
+</section>
+</div>
+
+<div class="footer">
+  Sommerville, I. — Software Engineering (Chapters 1–4) · Summary Document
+</div>
+
+</body>
+</html>
